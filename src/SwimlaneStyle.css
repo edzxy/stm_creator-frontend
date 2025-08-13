@@ -1,0 +1,62 @@
+/* Swimlane layout styles */
+
+.react-flow__node {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.react-flow__node:hover {
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.swimlane-container {
+    position: absolute;
+    height: 100%;
+    opacity: 0.1;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.swimlane {
+    height: 100%;
+    border-right: 1px dashed #ccc;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swimlane-label {
+    transform: rotate(-90deg);
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0.4;
+    white-space: nowrap;
+    color: #555;
+}
+
+/* Class-specific colors for swimlanes */
+.swimlane.class-1 {
+    background-color: rgba(139, 195, 74, 0.05);
+}
+
+.swimlane.class-2 {
+    background-color: rgba(205, 220, 57, 0.05);
+}
+
+.swimlane.class-3 {
+    background-color: rgba(255, 235, 59, 0.05);
+}
+
+.swimlane.class-4 {
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+.swimlane.class-5 {
+    background-color: rgba(255, 152, 0, 0.05);
+}
+
+.swimlane.class-6 {
+    background-color: rgba(255, 87, 34, 0.05);
+}

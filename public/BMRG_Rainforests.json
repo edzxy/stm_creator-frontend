@@ -1,0 +1,3099 @@
+{
+  "stm_name": "BMRG Rainforests",
+  "version": "pre peer review",
+  "release_date": "Aug-24",
+  "authorised_by": "Megan Good",
+  "contributing_experts": [],
+  "region": "",
+  "region_id": -9999,
+  "climate": "Tropical",
+  "ecosystem_type": "Rainforests",
+  "aus_eco_archetype_code": 1.2,
+  "aus_eco_archetype_name": "Non-marine influenced rainforest and vine thickets",
+  "aus_eco_umbrella_code": 1.0,
+  "peer_reviewed": "",
+  "no_peer_reviewers": -9999,
+  "states": [
+    {
+      "state_id": 1,
+      "state_name": "Reference",
+      "vast_state": {
+        "vast_class": "Class I",
+        "vast_name": "Residual",
+        "vast_eks_state": 1,
+        "eks_overstorey_class": "Reference overstorey",
+        "eks_understorey_class": "Reference understorey",
+        "eks_substate": "Reference overstorey and reference understorey",
+        "link": ""
+      },
+      "condition_upper": 1.0,
+      "condition_lower": 0.9,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 2,
+      "state_name": "Reference overstorey, modified understorey",
+      "vast_state": {
+        "vast_class": "Class II",
+        "vast_name": "Modified",
+        "vast_eks_state": 2,
+        "eks_overstorey_class": "Reference overstorey",
+        "eks_understorey_class": "Modified understorey",
+        "eks_substate": "Reference overstorey with modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.9,
+      "condition_lower": 0.75,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 3,
+      "state_name": "Reference overstorey, highly modified understorey",
+      "vast_state": {
+        "vast_class": "Class II",
+        "vast_name": "Modified",
+        "vast_eks_state": 3,
+        "eks_overstorey_class": "Reference overstorey",
+        "eks_understorey_class": "Highly modified understorey",
+        "eks_substate": "Reference overstorey with highly modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.9,
+      "condition_lower": 0.75,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 4,
+      "state_name": "Regenerating rainforest with modified understorey",
+      "vast_state": {
+        "vast_class": "Class II",
+        "vast_name": "Modified",
+        "vast_eks_state": 6,
+        "eks_overstorey_class": "Regenerating overstorey",
+        "eks_understorey_class": "Modified understorey",
+        "eks_substate": "Regenerating overstorey with modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.75,
+      "condition_lower": 0.6,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 5,
+      "state_name": "Regenerating rainforest with highly modified understorey",
+      "vast_state": {
+        "vast_class": "Class III",
+        "vast_name": "Transformed",
+        "vast_eks_state": 8,
+        "eks_overstorey_class": "Regenerating overstorey",
+        "eks_understorey_class": "Highly modified understorey",
+        "eks_substate": "Regenerating overstorey with highly modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.6,
+      "condition_lower": 0.5,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 6,
+      "state_name": "Highly modified overstorey and modified understorey",
+      "vast_state": {
+        "vast_class": "Class III",
+        "vast_name": "Transformed",
+        "vast_eks_state": 10,
+        "eks_overstorey_class": "Sparse or absent overstorey ",
+        "eks_understorey_class": "Modified understorey",
+        "eks_substate": "Sparse or absent overstorey with modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.51,
+      "condition_lower": 0.3,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 7,
+      "state_name": "Highly modified overstorey and highly modified understorey",
+      "vast_state": {
+        "vast_class": "Class III",
+        "vast_name": "Transformed",
+        "vast_eks_state": 11,
+        "eks_overstorey_class": "Sparse or absent overstorey ",
+        "eks_understorey_class": "Highly modified understorey",
+        "eks_substate": "Sparse or absent overstorey with highly modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.51,
+      "condition_lower": 0.3,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 8,
+      "state_name": "Collapsed/removed overstorey, highly modified understorey",
+      "vast_state": {
+        "vast_class": "Class IV",
+        "vast_name": "Replaced-Adventive",
+        "vast_eks_state": 15,
+        "eks_overstorey_class": "Collapsed overstorey",
+        "eks_understorey_class": "Highly modified understorey",
+        "eks_substate": "Collapsed overstorey with highly modified understorey",
+        "link": ""
+      },
+      "condition_upper": 0.3,
+      "condition_lower": 0.16,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 9,
+      "state_name": "Cultivated woody with modified, mostly native understorey",
+      "vast_state": {
+        "vast_class": "Class V",
+        "vast_name": "Replaced-Managed",
+        "vast_eks_state": 18,
+        "eks_overstorey_class": "Cultivated woody",
+        "eks_understorey_class": "Highly modified understorey",
+        "eks_substate": "Cultivated woody",
+        "link": ""
+      },
+      "condition_upper": 0.6,
+      "condition_lower": 0.5,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 10,
+      "state_name": "Cropping or sown pasture",
+      "vast_state": {
+        "vast_class": "Class V",
+        "vast_name": "Replaced-Managed",
+        "vast_eks_state": 17,
+        "eks_overstorey_class": "Sparse or absent overstorey ",
+        "eks_understorey_class": "Cropping and exotic pasture",
+        "eks_substate": "Cropping and exotic pastures",
+        "link": ""
+      },
+      "condition_upper": 0.16,
+      "condition_lower": 0.07,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    },
+    {
+      "state_id": 11,
+      "state_name": "Removed",
+      "vast_state": {
+        "vast_class": "Class VI",
+        "vast_name": "Removed",
+        "vast_eks_state": 19,
+        "eks_overstorey_class": "Sparse or absent overstorey ",
+        "eks_understorey_class": "Removed (artificial or novel substrate)",
+        "eks_substate": "Removed",
+        "link": ""
+      },
+      "condition_upper": 0.07,
+      "condition_lower": 0.0,
+      "eks_condition_estimate": -9999,
+      "elicitation_type": "pilot region",
+      "attributes": null
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": 488,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 489,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 490,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 491,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 492,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 493,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Vegetation establishment - exotic vines and woody weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 494,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 495,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.02
+    },
+    {
+      "transition_id": 496,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 497,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 498,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference",
+      "start_state_id": 1,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 499,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Weed control - reduction in weed propagules in landscape",
+              "driver_group": "Landscape"
+            },
+            {
+              "driver": "Manage and maintain appropriate total grazing pressure (includes native and introduced herbivores, and 'ferals')",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Exclude livestock",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Unfavourable climatic conditions (drought, heat)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "High intensity fire (catastrophic wildfire, bushfire)",
+              "driver_group": "Fire"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 500,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - appropriate monitoring, surveillance and control",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Manage and maintain appropriate total grazing pressure (includes native and introduced herbivores, and 'ferals')",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Reduce or maintain appropriate total grazing pressure (livestock)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Manage edge effects",
+              "driver_group": "Landscape"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 501,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 502,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 503,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 504,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - exotic vines and woody weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 505,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 506,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 507,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 508,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 509,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, modified understorey",
+      "start_state_id": 2,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.04
+    },
+    {
+      "transition_id": 510,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Weed control - reduction in weed propagules in landscape",
+              "driver_group": "Landscape"
+            },
+            {
+              "driver": "Manage and maintain appropriate total grazing pressure (includes native and introduced herbivores, and 'ferals')",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Exclude livestock",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Unfavourable climatic conditions (drought, heat)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "High intensity fire (catastrophic wildfire, bushfire)",
+              "driver_group": "Fire"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 511,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Weed control - reduction in weed propagules in landscape",
+              "driver_group": "Landscape"
+            },
+            {
+              "driver": "Manage and maintain appropriate total grazing pressure (includes native and introduced herbivores, and 'ferals')",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Exclude livestock",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Unfavourable climatic conditions (drought, heat)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "Feral animal incursion (fence breach)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "High intensity fire (catastrophic wildfire, bushfire)",
+              "driver_group": "Fire"
+            },
+            {
+              "driver": "Livestock incursion (fence breach)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 512,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 513,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 514,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 515,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 516,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - exotic vines and woody weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 517,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            }
+          ]
+        },
+        {
+          "chain_part": "",
+          "drivers": []
+        }
+      ],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 518,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 519,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 520,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Reference overstorey, highly modified understorey",
+      "start_state_id": 3,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.04
+    },
+    {
+      "transition_id": 521,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 522,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Weed control - reduction in weed propagules in landscape",
+              "driver_group": "Landscape"
+            },
+            {
+              "driver": "Manage and maintain appropriate total grazing pressure (includes native and introduced herbivores, and 'ferals')",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Exclude livestock",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Unfavourable climatic conditions (drought, heat)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "Feral animal incursion (fence breach)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "High intensity fire (catastrophic wildfire, bushfire)",
+              "driver_group": "Fire"
+            },
+            {
+              "driver": "Livestock incursion (fence breach)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 523,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Fragmentation impacts (edge effects, loss of connectivity)",
+              "driver_group": "Landscape"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Vegetation establishment - growth and development of saplings into mature overstorey structure",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Unfavourable climatic conditions (drought, heat)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "High intensity fire (catastrophic wildfire, bushfire)",
+              "driver_group": "Fire"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 524,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 525,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 526,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Vegetation establishment - exotic vines and woody weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 527,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Vegetation establishment - exotic vines and woody weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 528,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 529,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 530,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 531,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with modified understorey",
+      "start_state_id": 4,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.04
+    },
+    {
+      "transition_id": 532,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 533,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 0,
+      "time_100": 1,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 534,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 0,
+      "time_100": 1,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 535,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Manage edge effects",
+              "driver_group": "Landscape"
+            },
+            {
+              "driver": "Vegetation removal - mowing or slashing herbaceous layer to limit competitive exclusion",
+              "driver_group": "Vegetation removal"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Reduction in edge effects",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Unfavourable climatic conditions (drought, heat)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "Feral animal incursion (fence breach)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "High intensity fire (catastrophic wildfire, bushfire)",
+              "driver_group": "Fire"
+            },
+            {
+              "driver": "Livestock incursion (fence breach)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 536,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 537,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 538,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - exotic vines and woody weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 539,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.02
+    },
+    {
+      "transition_id": 540,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 541,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 542,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Regenerating rainforest with highly modified understorey",
+      "start_state_id": 5,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 543,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 544,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 545,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 546,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 547,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - woody weed removal",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Weed management - woody weed removal",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Revegetation - all strata (with reference species)",
+              "driver_group": "Revegetation"
+            }
+          ]
+        },
+        {
+          "chain_part": "favourable abiotic factor",
+          "drivers": [
+            {
+              "driver": "Favourable climatic conditions (mild summer, regular rainfall)",
+              "driver_group": "Environmental drivers"
+            }
+          ]
+        },
+        {
+          "chain_part": "hazard",
+          "drivers": [
+            {
+              "driver": "Temperature extremes (extreme heat)",
+              "driver_group": "Environmental drivers"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 548,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 549,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Fragmentation impacts (edge effects, loss of connectivity)",
+              "driver_group": "Landscape"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 550,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.04
+    },
+    {
+      "transition_id": 551,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 552,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 553,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and modified understorey",
+      "start_state_id": 6,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.07
+    },
+    {
+      "transition_id": 554,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 555,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 556,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 557,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 558,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Revegetation - all strata (with reference species)",
+              "driver_group": "Revegetation"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            }
+          ]
+        },
+        {
+          "chain_part": "favourable abiotic factor",
+          "drivers": [
+            {
+              "driver": "Favourable climatic conditions (mild summer, regular rainfall)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "Reference soil nutrient levels",
+              "driver_group": "Biotic process"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 559,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Weed management - physical, chemical, ecological",
+              "driver_group": "Weeds and exotic plants"
+            },
+            {
+              "driver": "Manage and maintain appropriate total grazing pressure (includes native and introduced herbivores, and 'ferals')",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Reduce or maintain appropriate total grazing pressure (livestock)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Manage edge effects",
+              "driver_group": "Landscape"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 560,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation mortality - canopy loss from altered disturbance regimes, stress or disease",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Increased or ongoing edge effects (light levels, temperature, exotic propagules, feral animal incursions)",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Vegetation establishment - non-transformer weeds",
+              "driver_group": "Biotic process"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 561,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Thinning overstorey (selective removal of large, hollow bearing trees)",
+              "driver_group": "Vegetation removal"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.04
+    },
+    {
+      "transition_id": 562,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 563,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.06
+    },
+    {
+      "transition_id": 564,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Highly modified overstorey and highly modified understorey",
+      "start_state_id": 7,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.07
+    },
+    {
+      "transition_id": 565,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.02
+    },
+    {
+      "transition_id": 566,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 567,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 568,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 569,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Revegetation - all strata (with reference species)",
+              "driver_group": "Revegetation"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            }
+          ]
+        },
+        {
+          "chain_part": "favourable abiotic factor",
+          "drivers": [
+            {
+              "driver": "Favourable climatic conditions (mild summer, regular rainfall)",
+              "driver_group": "Environmental drivers"
+            },
+            {
+              "driver": "Reference soil nutrient levels",
+              "driver_group": "Biotic process"
+            }
+          ]
+        },
+        {
+          "chain_part": "biotic process",
+          "drivers": [
+            {
+              "driver": "Native propagules available (soil seedbank or local species pool)",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.02
+    },
+    {
+      "transition_id": 570,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.04
+    },
+    {
+      "transition_id": 571,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.04
+    },
+    {
+      "transition_id": 572,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation mortality - death of mature overstorey trees",
+              "driver_group": "Biotic process"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 573,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.02
+    },
+    {
+      "transition_id": 574,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - all vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": -0.02
+    },
+    {
+      "transition_id": 575,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Collapsed/removed overstorey, highly modified understorey",
+      "start_state_id": 8,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.03
+    },
+    {
+      "transition_id": 576,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 577,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 578,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 579,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 580,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            },
+            {
+              "driver": "Revegetation - all strata (with reference species)",
+              "driver_group": "Revegetation"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 581,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 582,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": 0,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 583,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Vegetation removal - woody vegetation",
+              "driver_group": "Vegetation removal"
+            },
+            {
+              "driver": "Total grazing pressure (including livestock and feral animals) exceeds that to maintain <Ecosystem State> understorey",
+              "driver_group": "Fauna and livestock"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.02
+    },
+    {
+      "transition_id": 584,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": 1,
+      "time_100": 0,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Cultivation - Native tree plantation",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 585,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 586,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cultivated woody with modified, mostly native understorey",
+      "start_state_id": 9,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 587,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 588,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 589,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 590,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 591,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 592,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 593,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.06
+    },
+    {
+      "transition_id": 594,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.02
+    },
+    {
+      "transition_id": 595,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 596,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [
+        {
+          "chain_part": "management intervention",
+          "drivers": [
+            {
+              "driver": "Livestock grazing (set-stock, continuous, rotational)",
+              "driver_group": "Fauna and livestock"
+            },
+            {
+              "driver": "Nutrification of soil (stock camps, fertiliser addition)",
+              "driver_group": "Soil"
+            },
+            {
+              "driver": "Soil disturbance and degradation of structure (mechanical, trampling, ripping, excavation)",
+              "driver_group": "Soil***"
+            },
+            {
+              "driver": "Cropping and cultivation (including fertiliser addition, tilling) or sowing of pasture species",
+              "driver_group": "Landuse agriculture"
+            }
+          ]
+        }
+      ],
+      "transition_delta": 0.0
+    },
+    {
+      "transition_id": 597,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Cropping or sown pasture",
+      "start_state_id": 10,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": -0.01
+    },
+    {
+      "transition_id": 598,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Reference",
+      "end_state_id": 1,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 599,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Reference overstorey, modified understorey",
+      "end_state_id": 2,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.04
+    },
+    {
+      "transition_id": 600,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Reference overstorey, highly modified understorey",
+      "end_state_id": 3,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.04
+    },
+    {
+      "transition_id": 601,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Regenerating rainforest with modified understorey",
+      "end_state_id": 4,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.04
+    },
+    {
+      "transition_id": 602,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Regenerating rainforest with highly modified understorey",
+      "end_state_id": 5,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 603,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Highly modified overstorey and modified understorey",
+      "end_state_id": 6,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.07
+    },
+    {
+      "transition_id": 604,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Highly modified overstorey and highly modified understorey",
+      "end_state_id": 7,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.07
+    },
+    {
+      "transition_id": 605,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Collapsed/removed overstorey, highly modified understorey",
+      "end_state_id": 8,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.03
+    },
+    {
+      "transition_id": 606,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Cultivated woody with modified, mostly native understorey",
+      "end_state_id": 9,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 607,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Cropping or sown pasture",
+      "end_state_id": 10,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.01
+    },
+    {
+      "transition_id": 608,
+      "stm_name": "BMRG Rainforests",
+      "start_state": "Removed",
+      "start_state_id": 11,
+      "end_state": "Removed",
+      "end_state_id": 11,
+      "time_25": -9999,
+      "time_100": -9999,
+      "likelihood_25": -9999,
+      "likelihood_100": -9999,
+      "notes": "",
+      "causal_chain": [],
+      "transition_delta": 0.0
+    }
+  ],
+  "method_alignment": "None"
+}

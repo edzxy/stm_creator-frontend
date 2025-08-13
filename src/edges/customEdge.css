@@ -1,0 +1,78 @@
+/* Edge styling */
+.react-flow__edge-path {
+    stroke-linecap: round;
+    transition: stroke-width 0.2s, stroke 0.2s;
+}
+
+.react-flow__edge-text {
+    font-size: 10px;
+    font-weight: bold;
+    fill: #333;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.4));
+}
+
+/* Edge button styling */
+.edgebutton-foreignobject {
+    pointer-events: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.edgebutton-foreignobject div {
+    pointer-events: auto;
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.react-flow__edge:hover .edgebutton-foreignobject div {
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Positive delta styles */
+.delta-positive {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+/* Negative delta styles */
+.delta-negative {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Edge interaction visualization during dragging */
+.react-flow__edge.updating .react-flow__edge-path {
+    stroke: #ff9800;
+    stroke-dasharray: 5;
+    animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+    from {
+        stroke-dashoffset: 10;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}

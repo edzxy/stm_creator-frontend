@@ -1,0 +1,135 @@
+/* Node container */
+.node-container {
+    padding: 10px;
+    width: 180px;
+    min-height: 80px;
+    background: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* State number badge */
+.state-number-badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Class label banner */
+.class-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    text-align: center;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-weight: bold;
+}
+
+/* State name text */
+.state-name {
+    font-weight: bold;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 13px;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.3;
+}
+
+/* Condition info */
+.condition-info {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #666;
+    background-color: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-align: center;
+    width: 90%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Label input when editing */
+.label-input {
+    width: 90%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+}
+
+/* Color definitions for VAST classes */
+.class-color-1 { /* Class I */
+    border-color: #8bc34a;
+}
+.class-color-1-bg {
+    background-color: #8bc34a;
+}
+
+.class-color-2 { /* Class II */
+    border-color: #cddc39;
+}
+.class-color-2-bg {
+    background-color: #cddc39;
+}
+
+.class-color-3 { /* Class III */
+    border-color: #ffeb3b;
+}
+.class-color-3-bg {
+    background-color: #ffeb3b;
+}
+
+.class-color-4 { /* Class IV */
+    border-color: #ffc107;
+}
+.class-color-4-bg {
+    background-color: #ffc107;
+}
+
+.class-color-5 { /* Class V */
+    border-color: #ff9800;
+}
+.class-color-5-bg {
+    background-color: #ff9800;
+}
+
+.class-color-6 { /* Class VI */
+    border-color: #ff5722;
+}
+.class-color-6-bg {
+    background-color: #ff5722;
+}
+
+.class-color-default {
+    border-color: #9e9e9e;
+}
+.class-color-default-bg {
+    background-color: #9e9e9e;
+}
