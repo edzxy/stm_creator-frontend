@@ -1,3 +1,4 @@
+import LogoutButton from "./components/LogoutButton";
 import {useCallback, useEffect, useState} from 'react';
 import {
     addEdge,
@@ -663,6 +664,7 @@ function App() {
     };
 
     if (isLoading) {
+    
         return (
             <div className="loading-container">
                 <div className="loading-text">Loading State Transition Model...</div>
@@ -687,6 +689,8 @@ function App() {
     }
 
     return (
+    <>
+        <LogoutButton />  {/* 悬浮右上角，不占布局 */}
         <div className="app-container">
             <div className="controls-toolbar">
                 <button
@@ -862,6 +866,7 @@ function App() {
                 stateNames={stateNameMap}
             />
         </div>
+        </>
     );
 }
 
