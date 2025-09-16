@@ -332,3 +332,26 @@
 .button-filter.active {
     animation: pulse-filter 1s ease-in-out;
 }
+/* 让“信息栏 + Tips”成为一个定位容器 */
+.info-with-tips {
+  position: relative;
+  display: inline-block;   /* 与工具栏其余按钮在同一行 */
+  margin-left: 12px;       /* 与左侧按钮组拉开一点距离（可调） */
+}
+
+/* Tips 下拉，贴在信息栏正下方一点点 */
+.tips-popover {
+  position: absolute;
+  top: calc(100% + 8px);   /* 紧贴 info-panel 底部，向下 8px */
+  left: 0;                 /* 与 info-panel 左侧对齐；如需右对齐改为 right: 0 */
+  width: 420px;            /* 宽度可按需调整 */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  padding: 12px 16px;
+  z-index: 1000;           /* 浮在节点之上 */
+}
+
+/* 如果你的 .controls-toolbar 没有定位，可以加上这行（可选） */
+.controls-toolbar { position: relative; }

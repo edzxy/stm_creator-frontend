@@ -11,7 +11,6 @@ import {
     EdgeMouseHandler,
     MiniMap,
     OnConnect,
-    Panel,
     ReactFlow,
     ReactFlowProvider,
     useEdgesState,
@@ -108,9 +107,7 @@ function App() {
                 targetHandle: connection.sourceHandle?.replace("source","target"),
             } as Connection;
 
-
             setEdges((eds) => addEdge(flippedConnection, eds));
-
         },
         [setEdges, getNode]
     );
@@ -340,8 +337,6 @@ function App() {
             notes: newTransition.notes
         }
 
-
-        //console.log("Created new edge:", newEdge);
         setEdges(prevEdges => [...prevEdges, edge]);
 
         // Open the transition modal for immediate editing
@@ -398,7 +393,6 @@ function App() {
                         return {
                             ...state,
                             state_name: attributes.stateName,
-                            // You might update other state properties here
                         };
                     }
                     return state;
@@ -437,10 +431,7 @@ function App() {
 
             setNodes((prevNodes) => [...prevNodes, newNode]);
 
-            // Add to BMRG data (in a real app, you'd properly integrate this)
             if (bmrgData) {
-                // This is a simplified example - you would need to create a full state object
-                // with all required properties in a real implementation
                 const newStateId = Math.max(...bmrgData.states.map(s => s.state_id)) + 1;
                 const newState = {
                     state_id: newStateId,
@@ -474,13 +465,9 @@ function App() {
     // Function to handle edge click and double click events
     const onEdgeClick: EdgeMouseHandler = useCallback((event, edge) => {
         event.stopPropagation();
-
-        // Only select the edge on single click, don't open the modal
-        // Selection is handled automatically by ReactFlow
         console.log("Edge clicked:", edge.id);
     }, []);
 
-    // Function to handle edge double click (open transition modal)
     const onEdgeDoubleClick: EdgeMouseHandler = useCallback((event, edge) => {
         event.stopPropagation();
         console.log("Edge double-clicked:", edge.id);
@@ -496,9 +483,9 @@ function App() {
                 setIsTransitionModalOpen(true);
             } else {
                 console.log("No transition found with that ID");
-                console.log(edge)
+                console.log(edge);
                 setIsTransitionModalOpen(true);
-                createNewEdge(edge)
+                createNewEdge(edge);
             }
         }
     }, [bmrgData]);
@@ -506,12 +493,9 @@ function App() {
     // Function to save updated transition
     const handleSaveTransition = (updatedTransition: TransitionData) => {
         if (bmrgData) {
-            // Update the BMRG data with the modified transition
             const newBmrgData = updateTransition(bmrgData, updatedTransition);
             setBmrgData(newBmrgData);
 
-            // Update the edges to reflect the changes
-            // Find and update the specific edge
             setEdges(prevEdges =>
                 prevEdges.map(edge => {
                     if (edge.id === `transition-${updatedTransition.transition_id}`) {
@@ -553,17 +537,14 @@ function App() {
     const handleReLayout = () => {
         if (!bmrgData) return;
 
-        // Get new node layout, using transitions for better placement
         const initialNodes = statesToNodes(bmrgData.states, handleNodeLabelChange, handleNodeClick, bmrgData.transitions);
         setNodes(initialNodes);
     };
 
     // Function to toggle edge creation mode
     const toggleEdgeCreationMode = () => {
-        // If exiting edge creation mode, clear any selected start node
         if (edgeCreationMode) {
             setStartNodeId(null);
-            // Clear any node selection highlighting
             setNodes(prevNodes =>
                 prevNodes.map(node => ({
                     ...node,
@@ -581,14 +562,12 @@ function App() {
     const loadExistingEdges = () => {
         if (!bmrgData) return;
 
-        // Generate edges from all plausible transitions
         const initialEdges = transitionsToEdges(
             bmrgData.transitions.filter(t => t.time_25 === 1),
             nodes,
             showSelfTransitions
         );
 
-        // Apply the current delta filter
         const filteredEdges = filterEdgesByDelta(initialEdges, deltaFilter);
         setEdges(filteredEdges);
     };
@@ -598,7 +577,6 @@ function App() {
         const newValue = !showSelfTransitions;
         setShowSelfTransitions(newValue);
 
-        // Update edges with new self-transition setting
         if (bmrgData) {
             const newEdges = transitionsToEdges(
                 bmrgData.transitions.filter(t => t.time_25 === 1),
@@ -606,7 +584,6 @@ function App() {
                 newValue
             );
 
-            // Apply current delta filter
             const filteredEdges = filterEdgesByDelta(newEdges, deltaFilter);
             setEdges(filteredEdges);
         }
@@ -616,7 +593,6 @@ function App() {
     const toggleDeltaFilter = (option: DeltaFilterOption) => {
         setDeltaFilter(option);
 
-        // Update edges with new filter
         if (bmrgData) {
             const allEdges = transitionsToEdges(
                 bmrgData.transitions.filter(t => t.time_25 === 1),
@@ -624,7 +600,6 @@ function App() {
                 showSelfTransitions
             );
 
-            // Apply the filter
             const filteredEdges = option === 'all'
                 ? allEdges
                 : filterEdgesByDelta(allEdges, option);
@@ -664,7 +639,6 @@ function App() {
     };
 
     if (isLoading) {
-    
         return (
             <div className="loading-container">
                 <div className="loading-text">Loading State Transition Model...</div>
@@ -690,15 +664,10 @@ function App() {
 
     return (
     <>
-        <LogoutButton />  {/* 悬浮右上角，不占布局 */}
+        <LogoutButton />
         <div className="app-container">
             <div className="controls-toolbar">
-                <button
-                    onClick={openAddNodeModal}
-                    className="button button-primary"
-                >
-                    ➕ Add Node
-                </button>
+                <button onClick={openAddNodeModal} className="button button-primary">➕ Add Node</button>
 
                 <button
                     onClick={toggleEdgeCreationMode}
@@ -707,12 +676,7 @@ function App() {
                     {edgeCreationMode ? '🔗 Cancel Edge Creation' : '🔗 Create Edge'}
                 </button>
 
-                <button
-                    onClick={loadExistingEdges}
-                    className="button button-secondary"
-                >
-                    🔄 Load All Edges
-                </button>
+                <button onClick={loadExistingEdges} className="button button-secondary">🔄 Load All Edges</button>
 
                 <button
                     onClick={handleSaveModel}
@@ -722,12 +686,7 @@ function App() {
                     {isSaving ? '💾 Saving...' : '💾 Save Model'}
                 </button>
 
-                <button
-                    onClick={handleReLayout}
-                    className="button button-secondary"
-                >
-                    📊 Re-layout
-                </button>
+                <button onClick={handleReLayout} className="button button-secondary">📊 Re-layout</button>
 
                 <button
                     onClick={toggleSelfTransitions}
@@ -755,7 +714,6 @@ function App() {
                         className={`button button-filter neutral ${deltaFilter === 'neutral' ? 'active' : ''}`}
                     >
                         Neutral Δ
-
                     </button>
                     <button
                         onClick={() => toggleDeltaFilter('negative')}
@@ -766,23 +724,38 @@ function App() {
                 </div>
 
                 {bmrgData && (
-                    <div className="info-panel">
-                        <strong>{bmrgData.stm_name}</strong>
-                        <span className="info-separator">•</span>
-                        <span>{bmrgData.states.length} states</span>
-                        <span className="info-separator">•</span>
-                        <span>
-                            {bmrgData.transitions.filter(t => t.time_25 === 1).length} plausible transitions
-                            <span className="info-text-muted"> (of {bmrgData.transitions.length} total)</span>
-                        </span>
-                        {deltaFilter !== 'all' && (
-                            <>
-                                <span className="info-separator">•</span>
-                                <span className={`delta-filter-badge ${deltaFilter}`}>
-                                    Showing {deltaFilter} Δ transitions
-                                </span>
-                            </>
-                        )}
+                    <div className="info-with-tips">
+                        <div className="info-panel">
+                            <strong>{bmrgData.stm_name}</strong>
+                            <span className="info-separator">•</span>
+                            <span>{bmrgData.states.length} states</span>
+                            <span className="info-separator">•</span>
+                            <span>
+                                {bmrgData.transitions.filter(t => t.time_25 === 1).length} plausible transitions
+                                <span className="info-text-muted"> (of {bmrgData.transitions.length} total)</span>
+                            </span>
+                            {deltaFilter !== 'all' && (
+                                <>
+                                    <span className="info-separator">•</span>
+                                    <span className={`delta-filter-badge ${deltaFilter}`}>
+                                        Showing {deltaFilter} Δ transitions
+                                    </span>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Tips 紧贴信息栏正下方 */}
+                        <div className="tips-popover">
+                            <h3 className="tips-title">Tips</h3>
+                            <p className="tips-item">• Click a node to edit it</p>
+                            <p className="tips-item">• Use Create Edge button to connect nodes</p>
+                            <p className="tips-item">• Click an edge to select it</p>
+                            <p className="tips-item">• Double-click an edge to edit transition</p>
+                            <p className="tips-item">• Drag edge endpoints to reconnect</p>
+                            <p className="tips-item">• Use Re-layout to optimize layout</p>
+                            <p className="tips-item">• Toggle self-transitions visibility</p>
+                            <p className="tips-item">• Filter transitions by delta value</p>
+                        </div>
                     </div>
                 )}
             </div>
@@ -797,16 +770,12 @@ function App() {
                 onConnect={onConnect}
                 onEdgeClick={onEdgeClick}
                 onEdgeDoubleClick={onEdgeDoubleClick}
-                //edgesUpdatable={true} // Enable edge endpoint updates
                 edgesFocusable={true}
                 elementsSelectable={true}
                 edgesReconnectable={true}
-                reconnectRadius={10}  // Controls the size of the updater handle
+                reconnectRadius={10}
                 fitView
-                fitViewOptions={{
-                    padding: 0.2,
-                    includeHiddenNodes: false,
-                }}
+                fitViewOptions={{ padding: 0.2, includeHiddenNodes: false }}
                 proOptions={{ hideAttribution: true }}
                 defaultEdgeOptions={defaultEdgeOptions}
                 minZoom={0.2}
@@ -822,20 +791,7 @@ function App() {
                 <Background />
                 <MiniMap />
                 <Controls />
-
-                <Panel position="top-right">
-                    <div className="tips-panel">
-                        <h3 className="tips-title">Tips</h3>
-                        <p className="tips-item">• Click a node to edit it</p>
-                        <p className="tips-item">• Use Create Edge button to connect nodes</p>
-                        <p className="tips-item">• Click an edge to select it</p>
-                        <p className="tips-item">• Double-click an edge to edit transition</p>
-                        <p className="tips-item">• Drag edge endpoints to reconnect</p>
-                        <p className="tips-item">• Use Re-layout to optimize layout</p>
-                        <p className="tips-item">• Toggle self-transitions visibility</p>
-                        <p className="tips-item">• Filter transitions by delta value</p>
-                    </div>
-                </Panel>
+                {/* ❌ 已移除 Panel（Tips 不再放在 ReactFlow 内） */}
             </ReactFlow>
 
             {/* Edge creation help overlay */}
