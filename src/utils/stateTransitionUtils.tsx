@@ -208,6 +208,9 @@ function stateToNodeAttributes(state: StateData): NodeAttributes {
         stateNumber: state.state_id.toString(),
         vastClass: state.vast_state.vast_class,
         condition: getConditionString(state),
+        conditionLower: state.condition_lower === -9999 ? 0 : state.condition_lower,
+        conditionUpper: state.condition_upper === -9999 ? 1 : state.condition_upper,
+        eksConditionEstimate: state.eks_condition_estimate === -9999 ? 0.5 : state.eks_condition_estimate,
     };
 }
 

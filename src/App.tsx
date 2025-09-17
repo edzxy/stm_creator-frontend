@@ -29,6 +29,7 @@ import { CustomNode } from "./nodes/customNode";
 import CustomEdge from "./edges/customEdge";
 import { AppNode } from "./nodes/types";
 import { NodeAttributes, NodeModal } from "./nodes/nodeModal";
+import { StateDetailsSidebar, StateDetails } from "./components/StateDetailsSidebar";
 import { TransitionModal } from "./transitions/transitionModal";
 import { loadBMRGData, saveBMRGData, updateTransition } from "./utils/dataLoader";
 import { BMRGData, statesToNodes, TransitionData, transitionsToEdges } from "./utils/stateTransitionUtils";
@@ -56,6 +57,10 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [currentNodeId, setCurrentNodeId] = useState<string | null>(null);
   const [initialNodeValues, setInitialNodeValues] = useState<NodeAttributes | undefined>(undefined);
+
+  // State for the state details sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [initialSidebarValues, setInitialSidebarValues] = useState<StateDetails | undefined>(undefined);
 
   // State for the transition modal
   const [isTransitionModalOpen, setIsTransitionModalOpen] = useState(false);
@@ -257,15 +262,17 @@ function App() {
       const node = nodes.find((n) => n.id === nodeId);
       if (node) {
         setCurrentNodeId(nodeId);
-        setInitialNodeValues({
+        setInitialSidebarValues({
           stateName: node.data.label,
           stateNumber: node.data.attributes?.stateNumber || "",
           vastClass: node.data.attributes?.vastClass || "",
-          condition: node.data.attributes?.condition || "",
+          conditionLower: node.data.attributes?.conditionLower || 0,
+          conditionUpper: node.data.attributes?.conditionUpper || 1,
+          eksConditionEstimate: node.data.attributes?.eksConditionEstimate || 0.5,
           id: nodeId,
         });
         setIsEditing(true);
-        setIsNodeModalOpen(true);
+        setIsSidebarOpen(true);
       }
     }
   };
@@ -353,6 +360,9 @@ function App() {
                   stateNumber: attributes.stateNumber,
                   vastClass: attributes.vastClass,
                   condition: attributes.condition,
+                  conditionLower: attributes.conditionLower,
+                  conditionUpper: attributes.conditionUpper,
+                  eksConditionEstimate: attributes.eksConditionEstimate,
                 },
               },
             } as AppNode;
@@ -368,6 +378,13 @@ function App() {
             return {
               ...state,
               state_name: attributes.stateName,
+              condition_lower: attributes.conditionLower,
+              condition_upper: attributes.conditionUpper,
+              eks_condition_estimate: attributes.eksConditionEstimate,
+              vast_state: {
+                ...state.vast_state,
+                vast_class: attributes.vastClass,
+              },
             };
           }
           return state;
@@ -395,6 +412,9 @@ function App() {
             stateNumber: attributes.stateNumber,
             vastClass: attributes.vastClass,
             condition: attributes.condition,
+            conditionLower: attributes.conditionLower,
+            conditionUpper: attributes.conditionUpper,
+            eksConditionEstimate: attributes.eksConditionEstimate,
           },
         },
         position: {
@@ -419,9 +439,9 @@ function App() {
             eks_substate: "",
             link: "",
           },
-          condition_upper: 1.0,
-          condition_lower: 0.0,
-          eks_condition_estimate: -9999,
+          condition_upper: attributes.conditionUpper,
+          condition_lower: attributes.conditionLower,
+          eks_condition_estimate: attributes.eksConditionEstimate,
           elicitation_type: "user-created",
           attributes: null,
         };
@@ -434,6 +454,62 @@ function App() {
     }
 
     setIsNodeModalOpen(false);
+  };
+
+  // save state details from sidebar
+  const handleSaveStateDetails = (details: StateDetails) => {
+    if (isEditing && currentNodeId) {
+      setNodes((prevNodes) =>
+        prevNodes.map((node) => {
+          if (node.id === currentNodeId) {
+            return {
+              ...node,
+              data: {
+                ...node.data,
+                label: details.stateName,
+                attributes: {
+                  stateName: details.stateName,
+                  stateNumber: details.stateNumber,
+                  vastClass: details.vastClass,
+                  condition: node.data.attributes?.condition || "",
+                  conditionLower: details.conditionLower,
+                  conditionUpper: details.conditionUpper,
+                  eksConditionEstimate: details.eksConditionEstimate,
+                },
+              },
+            } as AppNode;
+          }
+          return node;
+        })
+      );
+
+      if (bmrgData && currentNodeId.startsWith("state-")) {
+        const stateId = parseInt(currentNodeId.replace("state-", ""));
+        const updatedStates = bmrgData.states.map((state) => {
+          if (state.state_id === stateId) {
+            return {
+              ...state,
+              state_name: details.stateName,
+              condition_lower: details.conditionLower,
+              condition_upper: details.conditionUpper,
+              eks_condition_estimate: details.eksConditionEstimate,
+              vast_state: {
+                ...state.vast_state,
+                vast_class: details.vastClass,
+              },
+            };
+          }
+          return state;
+        });
+
+        setBmrgData({
+          ...bmrgData,
+          states: updatedStates,
+        });
+      }
+    }
+
+    setIsSidebarOpen(false);
   };
 
   // edge click/dblclick
@@ -825,6 +901,15 @@ function App() {
           isOpen={isSupportModalOpen}
           onClose={() => setIsSupportModalOpen(false)}
           onSubmit={handleSupportSubmit}
+        />
+
+        {/* State Details Sidebar */}
+        <StateDetailsSidebar
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+          onSave={handleSaveStateDetails}
+          initialValues={initialSidebarValues}
+          isEditing={isEditing}
         />
       </div>
     </>

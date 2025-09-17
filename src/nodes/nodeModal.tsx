@@ -5,6 +5,9 @@ export interface NodeAttributes {
     stateNumber: string;
     vastClass: string;
     condition: string;
+    conditionLower: number;
+    conditionUpper: number;
+    eksConditionEstimate: number;
     id?: string; // Optional for editing existing nodes
 }
 
@@ -32,6 +35,9 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
         stateNumber: '',
         vastClass: '',
         condition: '',
+        conditionLower: 0,
+        conditionUpper: 1,
+        eksConditionEstimate: 0.5,
     });
 
     // Update form when initialValues changes (when editing an existing node)
@@ -45,6 +51,9 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                 stateNumber: '',
                 vastClass: '',
                 condition: '',
+                conditionLower: 0,
+                conditionUpper: 1,
+                eksConditionEstimate: 0.5,
             });
         }
     }, [initialValues, isOpen]);
@@ -167,6 +176,69 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                                     borderRadius: '4px',
                                     border: '1px solid #ccc',
                                     minHeight: '80px'
+                                }}
+                            />
+                        </label>
+                    </div>
+
+                    <div style={{ marginBottom: '15px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>
+                            Condition Lower Bound (0-1):
+                            <input
+                                type="number"
+                                name="conditionLower"
+                                value={attributes.conditionLower}
+                                onChange={handleChange}
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                style={{
+                                    width: '100%',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    border: '1px solid #ccc'
+                                }}
+                            />
+                        </label>
+                    </div>
+
+                    <div style={{ marginBottom: '15px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>
+                            Condition Upper Bound (0-1):
+                            <input
+                                type="number"
+                                name="conditionUpper"
+                                value={attributes.conditionUpper}
+                                onChange={handleChange}
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                style={{
+                                    width: '100%',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    border: '1px solid #ccc'
+                                }}
+                            />
+                        </label>
+                    </div>
+
+                    <div style={{ marginBottom: '15px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>
+                            EKS Condition Estimate (0-1):
+                            <input
+                                type="number"
+                                name="eksConditionEstimate"
+                                value={attributes.eksConditionEstimate}
+                                onChange={handleChange}
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                style={{
+                                    width: '100%',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    border: '1px solid #ccc'
                                 }}
                             />
                         </label>
