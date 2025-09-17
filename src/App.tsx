@@ -1,4 +1,5 @@
 import LogoutButton from "./components/LogoutButton";
+import SupportModal from "./components/SupportModal";
 import { useCallback, useEffect, useState } from "react";
 import {
   addEdge,
@@ -38,7 +39,7 @@ type DeltaFilterOption = "all" | "positive" | "neutral" | "negative";
 function App() {
   // State for nodes and edges
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const [edges, setEdges] = useEdgesState<Edge>([]);
 
   // State for edge creation mode
   const [edgeCreationMode, setEdgeCreationMode] = useState(false);
@@ -59,6 +60,9 @@ function App() {
   // State for the transition modal
   const [isTransitionModalOpen, setIsTransitionModalOpen] = useState(false);
   const [currentTransition, setCurrentTransition] = useState<TransitionData | null>(null);
+
+  // State for the support modal
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
   // State for the BMRG data
   const [bmrgData, setBmrgData] = useState<BMRGData | null>(null);
@@ -498,6 +502,19 @@ function App() {
     }
   };
 
+  // handle support request submission
+  const handleSupportSubmit = async (title: string, content: string) => {
+    // TODO: Implement API call to backend support endpoint
+    // For now, just log the support request
+    console.log("Support request submitted:", { title, content, timestamp: new Date().toISOString() });
+    
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Show success message
+    alert("Support request submitted successfully! Our team will get back to you soon.");
+  };
+
   // re-layout
   const handleReLayout = () => {
     if (!bmrgData) return;
@@ -654,6 +671,14 @@ function App() {
             {showSelfTransitions ? "🔄 Hide Self Transitions" : "🔄 Show Self Transitions"}
           </button>
 
+          <button
+            onClick={() => setIsSupportModalOpen(true)}
+            className="button button-help"
+            title="Contact Support Team"
+          >
+            ❓ Help
+          </button>
+
           <div className="filter-group">
             <span className="filter-label">Filter by Delta:</span>
             <button
@@ -793,6 +818,13 @@ function App() {
           onSave={handleSaveTransition}
           transition={currentTransition}
           stateNames={stateNameMap}
+        />
+
+        {/* Support Modal */}
+        <SupportModal
+          isOpen={isSupportModalOpen}
+          onClose={() => setIsSupportModalOpen(false)}
+          onSubmit={handleSupportSubmit}
         />
       </div>
     </>

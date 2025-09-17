@@ -39,6 +39,19 @@
     background: #17a2b8;
 }
 
+.button-help {
+    background: #ffc107;
+    color: #212529;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.button-help:hover {
+    background: #e0a800;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .button-disabled {
     opacity: 0.7;
     cursor: default;
