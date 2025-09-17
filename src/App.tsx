@@ -33,6 +33,8 @@ import { StateDetailsSidebar, StateDetails } from "./components/StateDetailsSide
 import { TransitionModal } from "./transitions/transitionModal";
 import { loadBMRGData, saveBMRGData, updateTransition } from "./utils/dataLoader";
 import { BMRGData, statesToNodes, TransitionData, transitionsToEdges } from "./utils/stateTransitionUtils";
+import { ColorConfigProvider } from "./colorConfig/ColorConfigContext";
+import { ColorConfigModal } from "./colorConfig/ColorConfigModal";
 
 // Type definition for delta filter options
 type DeltaFilterOption = "all" | "positive" | "neutral" | "negative";
@@ -68,6 +70,9 @@ function App() {
 
   // State for the support modal
   const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
+
+  // State for the color configuration modal
+  const [isColorConfigModalOpen, setIsColorConfigModalOpen] = useState(false);
 
   // State for the BMRG data
   const [bmrgData, setBmrgData] = useState<BMRGData | null>(null);
@@ -748,6 +753,14 @@ function App() {
           </button>
 
           <button
+            onClick={() => setIsColorConfigModalOpen(true)}
+            className="button button-info"
+            title="Configure Node Colors"
+          >
+            🎨 Color Config
+          </button>
+
+          <button
             onClick={() => setIsSupportModalOpen(true)}
             className="button button-help"
             title="Contact Support Team"
@@ -903,6 +916,12 @@ function App() {
           onSubmit={handleSupportSubmit}
         />
 
+        {/* Color Configuration Modal */}
+        <ColorConfigModal
+          isOpen={isColorConfigModalOpen}
+          onClose={() => setIsColorConfigModalOpen(false)}
+        />
+
         {/* State Details Sidebar */}
         <StateDetailsSidebar
           isOpen={isSidebarOpen}
@@ -916,11 +935,13 @@ function App() {
   );
 }
 
-// Wrap the App component with ReactFlowProvider
+// Wrap the App component with ReactFlowProvider and ColorConfigProvider
 export default function AppWithProvider() {
   return (
-    <ReactFlowProvider>
-      <App />
-    </ReactFlowProvider>
+    <ColorConfigProvider>
+      <ReactFlowProvider>
+        <App />
+      </ReactFlowProvider>
+    </ColorConfigProvider>
   );
 }

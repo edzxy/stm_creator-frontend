@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { NodeProps, Handle, Position } from '@xyflow/react';
 import { CustomNodeData } from './types';
+import { useColorConfig } from '../colorConfig/ColorConfigContext';
+import { getColorForCondition, getConditionValue } from '../colorConfig/colorUtils';
 import './CustomNode.css';
 
 interface CustomNodeProps extends NodeProps {
@@ -22,6 +24,7 @@ function getVastClassNumber(vastClass: string): number {
 export function CustomNode({ data, id }: CustomNodeProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [nodeLabel, setNodeLabel] = useState(data.label);
+    const { getActiveScheme, colorConfig } = useColorConfig();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNodeLabel(event.target.value);
@@ -61,10 +64,20 @@ export function CustomNode({ data, id }: CustomNodeProps) {
     const isSelected = data.isSelected || false;
     const isEdgeCreationMode = data.isEdgeCreationMode || false;
 
+    // Get color based on condition value
+    const activeScheme = getActiveScheme();
+    let conditionColor = '#ffffff'; // Default white background
+    
+    if (activeScheme && data.attributes) {
+        const conditionValue = getConditionValue(data.attributes, colorConfig.conditionField);
+        conditionColor = getColorForCondition(conditionValue, activeScheme);
+    }
+
     // Add special styling for selected nodes during edge creation
     const containerStyle = {
         boxShadow: isSelected ? '0 0 0 4px #007bff, 0 2px 5px rgba(0, 0, 0, 0.1)' : '0 2px 5px rgba(0, 0, 0, 0.1)',
-        cursor: isEdgeCreationMode ? 'crosshair' : 'pointer'
+        cursor: isEdgeCreationMode ? 'crosshair' : 'pointer',
+        backgroundColor: conditionColor
     };
 
     return (
