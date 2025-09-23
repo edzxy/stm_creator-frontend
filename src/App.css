@@ -97,14 +97,14 @@
   padding: 4px 8px;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
-  background: #fff;   /* white background for contrast */
-  color: #111;        /* dark text so it's readable */
+  background: #fff;
+  color: #111;
   font-size: 12px;
   line-height: 1;
 }
 
 .filter-chip input[type="checkbox"] {
-  margin: 0;          /* remove default extra spacing */
-  accent-color: #2563eb;  /* nicer checkbox color (optional) */
+  margin: 0;
+  accent-color: #2563eb;
 }
 
