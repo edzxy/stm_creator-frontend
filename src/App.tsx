@@ -1,5 +1,5 @@
+// src/App.tsx
 import LogoutButton from "./components/LogoutButton";
-import SupportModal from "./components/SupportModal";
 import { useCallback, useEffect, useState } from "react";
 import {
   addEdge,
@@ -23,67 +23,185 @@ import "@xyflow/react/dist/style.css";
 import "./EdgeStyles.css";
 import "./SwimlaneStyle.css";
 import "./App.css";
+
 import { nodeTypes as baseNodeTypes } from "./nodes";
 import { edgeTypes } from "./edges";
 import { CustomNode } from "./nodes/customNode";
 import CustomEdge from "./edges/customEdge";
 import { AppNode } from "./nodes/types";
 import { NodeAttributes, NodeModal } from "./nodes/nodeModal";
-import { StateDetailsSidebar, StateDetails } from "./components/StateDetailsSidebar";
 import { TransitionModal } from "./transitions/transitionModal";
 import { loadBMRGData, saveBMRGData, updateTransition } from "./utils/dataLoader";
 import { BMRGData, statesToNodes, TransitionData, transitionsToEdges } from "./utils/stateTransitionUtils";
-import { ColorConfigProvider } from "./colorConfig/ColorConfigContext";
-import { ColorConfigModal } from "./colorConfig/ColorConfigModal";
 
-// Type definition for delta filter options
+// IMPORTANT: match your real path (you showed it's under src/colorConfig)
+import { ColorConfigProvider } from "./colorConfig/ColorConfigContext";
+
+// Delta filter options
 type DeltaFilterOption = "all" | "positive" | "neutral" | "negative";
 
-function App() {
-  // State for nodes and edges
-  const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
-  const [edges, setEdges] = useEdgesState<Edge>([]);
+/* -------------------- Right-side Transition Panel (lightweight) -------------------- */
+function TransitionPanel({
+  open,
+  onClose,
+  transition,
+  stateNames,
+  onSave,
+}: {
+  open: boolean;
+  onClose: () => void;
+  transition: TransitionData | null;
+  stateNames: Record<number, string>;
+  onSave: (t: TransitionData) => void;
+}) {
+  const [local, setLocal] = useState<TransitionData | null>(transition);
 
-  // State for edge creation mode
+  useEffect(() => {
+    setLocal(transition ?? null);
+  }, [transition]);
+
+  if (!open || !local) return null;
+
+  const update = <K extends keyof TransitionData>(k: K, v: TransitionData[K]) =>
+    setLocal({ ...local, [k]: v });
+
+  return (
+    <div className="transition-panel">
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h3 style={{ margin: 0 }}>Transition</h3>
+        <button
+          onClick={onClose}
+          style={{ border: "1px solid #e5e7eb", borderRadius: 6, padding: "4px 8px", background: "#f8fafc" }}
+        >
+          Off
+        </button>
+      </div>
+
+      <div style={{ marginTop: 12, fontSize: 14, color: "#475569" }}>
+        <div>
+          From: <strong>{stateNames[local.start_state_id] ?? local.start_state}</strong>
+        </div>
+        <div>
+          To: <strong>{stateNames[local.end_state_id] ?? local.end_state}</strong>
+        </div>
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          <input
+            type="checkbox"
+            checked={!!local.time_25}
+            onChange={(e) => update("time_25", e.target.checked ? 1 : 0)}
+          />
+          plausible (time_25)
+        </label>
+        <label style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 8 }}>
+          <input
+            type="checkbox"
+            checked={!!local.time_100}
+            onChange={(e) => update("time_100", e.target.checked ? 1 : 0)}
+          />
+          certain (time_100)
+        </label>
+      </div>
+
+      <div style={{ marginTop: 16, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+        <div>
+          <label style={{ fontSize: 12, color: "#64748b" }}>likelihood_25 (0–1)</label>
+          <input
+            type="number"
+            min={0}
+            max={1}
+            step={0.01}
+            value={local.likelihood_25}
+            onChange={(e) => update("likelihood_25", Number(e.target.value))}
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div>
+          <label style={{ fontSize: 12, color: "#64748b" }}>likelihood_100 (0–1)</label>
+          <input
+            type="number"
+            min={0}
+            max={1}
+            step={0.01}
+            value={local.likelihood_100}
+            onChange={(e) => update("likelihood_100", Number(e.target.value))}
+            style={{ width: "100%" }}
+          />
+        </div>
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <label style={{ fontSize: 12, color: "#64748b" }}>Δ (transition_delta)</label>
+        <input
+          type="number"
+          step={0.01}
+          value={local.transition_delta}
+          onChange={(e) => update("transition_delta", Number(e.target.value))}
+          style={{ width: "100%" }}
+        />
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <label style={{ fontSize: 12, color: "#64748b" }}>Notes</label>
+        <textarea
+          rows={6}
+          value={local.notes}
+          onChange={(e) => update("notes", e.target.value)}
+          style={{ width: "100%", resize: "vertical" }}
+        />
+      </div>
+
+      <div style={{ marginTop: 16, display: "flex", gap: 8 }}>
+        <button onClick={() => local && onSave(local)} className="button button-success" style={{ flex: 1 }}>
+          Preserve
+        </button>
+        <button onClick={onClose} className="button button-secondary" style={{ flex: 1 }}>
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------ App ------------------------------------ */
+function App() {
+  // Nodes & Edges
+  const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+
+  // Edge-creation mode
   const [edgeCreationMode, setEdgeCreationMode] = useState(false);
   const [startNodeId, setStartNodeId] = useState<string | null>(null);
 
-  // State for self-transition filtering
+  // Filters
   const [showSelfTransitions, setShowSelfTransitions] = useState(false);
-
-  // State for delta value filtering
   const [deltaFilter, setDeltaFilter] = useState<DeltaFilterOption>("all");
+  const [plausibleOnly, setPlausibleOnly] = useState(true);
+  const [hasNotesOnly, setHasNotesOnly] = useState(false);
 
-  // State for the node modal
+  // Node modal
   const [isNodeModalOpen, setIsNodeModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentNodeId, setCurrentNodeId] = useState<string | null>(null);
   const [initialNodeValues, setInitialNodeValues] = useState<NodeAttributes | undefined>(undefined);
 
-  // State for the state details sidebar
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [initialSidebarValues, setInitialSidebarValues] = useState<StateDetails | undefined>(undefined);
-
-  // State for the transition modal
+  // Transition modals
   const [isTransitionModalOpen, setIsTransitionModalOpen] = useState(false);
   const [currentTransition, setCurrentTransition] = useState<TransitionData | null>(null);
+  const [isTransitionSideOpen, setIsTransitionSideOpen] = useState(false);
+  const [sideTransition, setSideTransition] = useState<TransitionData | null>(null);
 
-  // State for the support modal
-  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
-
-  // State for the color configuration modal
-  const [isColorConfigModalOpen, setIsColorConfigModalOpen] = useState(false);
-
-  // State for the BMRG data
+  // Data
   const [bmrgData, setBmrgData] = useState<BMRGData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  // Tips 折叠状态
+  // Tips fold state
   const [showTips, setShowTips] = useState(true);
 
-  // Load BMRG data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -91,7 +209,6 @@ function App() {
         const data = await loadBMRGData();
         setBmrgData(data);
 
-        // Initialize nodes from the data, but don't create edges
         const initialNodes = statesToNodes(
           data.states,
           handleNodeLabelChange,
@@ -100,9 +217,7 @@ function App() {
         );
         setNodes(initialNodes);
 
-        // No edges will be created on initial load
-        setEdges([]);
-
+        setEdges([]); // no edges on initial load
         setIsLoading(false);
       } catch (err) {
         console.error("Failed to load BMRG data:", err);
@@ -116,44 +231,52 @@ function App() {
 
   const { getNode } = useReactFlow();
 
+  // On connect (flip source/target for your data model)
   const onConnect: OnConnect = useCallback(
     (connection) => {
-      const { source, target } = connection;
-
-      // flip source & target
-      const flippedConnection = {
+      const flipped: Connection = {
         ...connection,
-        source: target,
-        target: source,
+        source: connection.target,
+        target: connection.source,
         sourceHandle: connection.targetHandle?.replace("target", "source"),
         targetHandle: connection.sourceHandle?.replace("source", "target"),
       } as Connection;
 
-      setEdges((eds) => addEdge(flippedConnection, eds));
+      setEdges((eds) => addEdge(flipped, eds));
     },
     [setEdges, getNode]
   );
 
-  // Filter edges by delta
-  const filterEdgesByDelta = useCallback((edges: Edge[], filterOption: DeltaFilterOption) => {
-    if (filterOption === "all") return edges;
-
-    return edges.filter((edge) => {
+  // Filter by delta helper
+  const filterEdgesByDelta = useCallback((eds: Edge[], filterOption: DeltaFilterOption) => {
+    if (filterOption === "all") return eds;
+    return eds.filter((edge) => {
       const delta = (edge.data?.transitionDelta as number) || 0;
-      switch (filterOption) {
-        case "positive":
-          return delta > 0;
-        case "neutral":
-          return delta === 0;
-        case "negative":
-          return delta < 0;
-        default:
-          return true;
-      }
+      if (filterOption === "positive") return delta > 0;
+      if (filterOption === "neutral") return delta === 0;
+      if (filterOption === "negative") return delta < 0;
+      return true;
     });
   }, []);
 
-  // Handle edge changes
+  // Combined transition filters
+  const filterTransitions = (all: TransitionData[]) =>
+    all.filter((t) => {
+      if (plausibleOnly && t.time_25 !== 1) return false;
+      if (hasNotesOnly && !(t.notes && t.notes.trim().length > 0)) return false;
+      return true;
+    });
+
+  // Refresh edges after any filter/flag change
+  const refreshEdges = useCallback(() => {
+    if (!bmrgData) return;
+    const trans = filterTransitions(bmrgData.transitions);
+    const edges0 = transitionsToEdges(trans, nodes, showSelfTransitions);
+    const edges1 = deltaFilter === "all" ? edges0 : filterEdgesByDelta(edges0, deltaFilter);
+    setEdges(edges1);
+  }, [bmrgData, nodes, showSelfTransitions, deltaFilter, filterEdgesByDelta]);
+
+  // Handle edges change (update start/end on drag)
   const handleEdgesChange = useCallback(
     (changes: EdgeChange[]) => {
       setEdges((eds) => {
@@ -165,9 +288,7 @@ function App() {
 
         if (edgeUpdates.length > 0) {
           edgeUpdates.forEach((update) => {
-            let edgeId: string | undefined;
-            if (update.type === "select") edgeId = update.id;
-
+            const edgeId = update.type === "select" ? update.id : undefined;
             const updatedEdge = newEdges.find((e) => e.id === edgeId);
             const originalEdge = eds.find((e) => e.id === edgeId);
 
@@ -181,10 +302,7 @@ function App() {
             ) {
               if (updatedEdge.data?.transitionId && bmrgData) {
                 const transitionId = updatedEdge.data.transitionId;
-                const transition = bmrgData.transitions.find(
-                  (t) => t.transition_id === transitionId
-                );
-
+                const transition = bmrgData.transitions.find((t) => t.transition_id === transitionId);
                 if (transition) {
                   const sourceStateId = parseInt(updatedEdge.source.replace("state-", ""));
                   const targetStateId = parseInt(updatedEdge.target.replace("state-", ""));
@@ -209,31 +327,20 @@ function App() {
 
   // Update node label
   const handleNodeLabelChange = (nodeId: string, newLabel: string) => {
-    setNodes((prevNodes) =>
-      prevNodes.map((node) => {
-        if (node.id === nodeId) {
-          return {
-            ...node,
-            data: { ...node.data, label: newLabel },
-          } as AppNode;
-        }
-        return node;
-      })
+    setNodes((prev) =>
+      prev.map((node) => (node.id === nodeId ? { ...node, data: { ...node.data, label: newLabel } } : node))
     );
   };
 
-  // Node click
+  // Node click: edge creation or open node modal
   const handleNodeClick = (nodeId: string) => {
     if (edgeCreationMode) {
       if (startNodeId === null) {
         setStartNodeId(nodeId);
-        setNodes((prevNodes) =>
-          prevNodes.map((node) => ({
+        setNodes((prev) =>
+          prev.map((node) => ({
             ...node,
-            data: {
-              ...node.data,
-              isSelected: node.id === nodeId,
-            },
+            data: { ...node.data, isSelected: node.id === nodeId },
           }))
         );
       } else {
@@ -249,15 +356,12 @@ function App() {
           style: undefined,
           type: "custom",
         };
-
         createNewEdge(edge);
-        setNodes((prevNodes) =>
-          prevNodes.map((node) => ({
+
+        setNodes((prev) =>
+          prev.map((node) => ({
             ...node,
-            data: {
-              ...node.data,
-              isSelected: false,
-            },
+            data: { ...node.data, isSelected: false },
           }))
         );
         setStartNodeId(null);
@@ -267,29 +371,27 @@ function App() {
       const node = nodes.find((n) => n.id === nodeId);
       if (node) {
         setCurrentNodeId(nodeId);
-        setInitialSidebarValues({
+        setInitialNodeValues({
           stateName: node.data.label,
           stateNumber: node.data.attributes?.stateNumber || "",
           vastClass: node.data.attributes?.vastClass || "",
-          conditionLower: node.data.attributes?.conditionLower || 0,
-          conditionUpper: node.data.attributes?.conditionUpper || 1,
-          eksConditionEstimate: node.data.attributes?.eksConditionEstimate || 0.5,
+          condition: node.data.attributes?.condition || "",
           id: nodeId,
         });
         setIsEditing(true);
-        setIsSidebarOpen(true);
+        setIsNodeModalOpen(true);
       }
     }
   };
 
-  // Create new edge
+  // Create new edge (and transition)
   const createNewEdge = (edge: Edge) => {
     if (!bmrgData) return;
 
     const sourceStateId = parseInt(edge.source.replace("state-", ""));
     const targetStateId = parseInt(edge.target.replace("state-", ""));
-    const newTransitionId = Math.max(...bmrgData.transitions.map((t) => t.transition_id)) + 1;
 
+    const newTransitionId = Math.max(...bmrgData.transitions.map((t) => t.transition_id)) + 1;
     const sourceState = bmrgData.states.find((s) => s.state_id === sourceStateId);
     const targetState = bmrgData.states.find((s) => s.state_id === targetStateId);
     if (!sourceState || !targetState) return;
@@ -310,10 +412,7 @@ function App() {
       transition_delta: 0,
     };
 
-    const updatedBmrgData = {
-      ...bmrgData,
-      transitions: [...bmrgData.transitions, newTransition],
-    };
+    const updatedBmrgData = { ...bmrgData, transitions: [...bmrgData.transitions, newTransition] };
     setBmrgData(updatedBmrgData);
 
     const newEdgeId = `transition-${newTransition.transition_id}`;
@@ -329,19 +428,19 @@ function App() {
       notes: newTransition.notes,
     };
 
-    setEdges((prevEdges) => [...prevEdges, edge]);
+    setEdges((prev) => [...prev, edge]);
     setCurrentTransition(newTransition);
     setIsTransitionModalOpen(true);
   };
 
-  // map for modal
+  // State ID -> name map
   const stateNameMap =
     bmrgData?.states.reduce<Record<number, string>>((map, state) => {
       map[state.state_id] = state.state_name;
       return map;
     }, {}) ?? {};
 
-  // open add node modal
+  // Add-node modal helpers
   const openAddNodeModal = () => {
     setCurrentNodeId(null);
     setInitialNodeValues(undefined);
@@ -349,56 +448,34 @@ function App() {
     setIsNodeModalOpen(true);
   };
 
-  // save node
   const handleSaveNode = (attributes: NodeAttributes) => {
     if (isEditing && currentNodeId) {
-      setNodes((prevNodes) =>
-        prevNodes.map((node) => {
-          if (node.id === currentNodeId) {
-            return {
-              ...node,
-              data: {
-                ...node.data,
-                label: attributes.stateName,
-                attributes: {
-                  stateName: attributes.stateName,
-                  stateNumber: attributes.stateNumber,
-                  vastClass: attributes.vastClass,
-                  condition: attributes.condition,
-                  conditionLower: attributes.conditionLower,
-                  conditionUpper: attributes.conditionUpper,
-                  eksConditionEstimate: attributes.eksConditionEstimate,
+      setNodes((prev) =>
+        prev.map((node) =>
+          node.id === currentNodeId
+            ? {
+                ...node,
+                data: {
+                  ...node.data,
+                  label: attributes.stateName,
+                  attributes: {
+                    stateName: attributes.stateName,
+                    stateNumber: attributes.stateNumber,
+                    vastClass: attributes.vastClass,
+                    condition: attributes.condition,
+                  },
                 },
-              },
-            } as AppNode;
-          }
-          return node;
-        })
+              }
+            : node
+        )
       );
 
       if (bmrgData && currentNodeId.startsWith("state-")) {
         const stateId = parseInt(currentNodeId.replace("state-", ""));
-        const updatedStates = bmrgData.states.map((state) => {
-          if (state.state_id === stateId) {
-            return {
-              ...state,
-              state_name: attributes.stateName,
-              condition_lower: attributes.conditionLower,
-              condition_upper: attributes.conditionUpper,
-              eks_condition_estimate: attributes.eksConditionEstimate,
-              vast_state: {
-                ...state.vast_state,
-                vast_class: attributes.vastClass,
-              },
-            };
-          }
-          return state;
-        });
-
-        setBmrgData({
-          ...bmrgData,
-          states: updatedStates,
-        });
+        const updatedStates = bmrgData.states.map((s) =>
+          s.state_id === stateId ? { ...s, state_name: attributes.stateName } : s
+        );
+        setBmrgData({ ...bmrgData, states: updatedStates });
       }
     } else {
       const newNodeId = `node-${Date.now()}`;
@@ -417,18 +494,12 @@ function App() {
             stateNumber: attributes.stateNumber,
             vastClass: attributes.vastClass,
             condition: attributes.condition,
-            conditionLower: attributes.conditionLower,
-            conditionUpper: attributes.conditionUpper,
-            eksConditionEstimate: attributes.eksConditionEstimate,
           },
         },
-        position: {
-          x: centerX,
-          y: centerY,
-        },
+        position: { x: centerX, y: centerY },
       };
 
-      setNodes((prevNodes) => [...prevNodes, newNode]);
+      setNodes((prev) => [...prev, newNode]);
 
       if (bmrgData) {
         const newStateId = Math.max(...bmrgData.states.map((s) => s.state_id)) + 1;
@@ -444,132 +515,80 @@ function App() {
             eks_substate: "",
             link: "",
           },
-          condition_upper: attributes.conditionUpper,
-          condition_lower: attributes.conditionLower,
-          eks_condition_estimate: attributes.eksConditionEstimate,
+          condition_upper: 1.0,
+          condition_lower: 0.0,
+          eks_condition_estimate: -9999,
           elicitation_type: "user-created",
           attributes: null,
         };
-
-        setBmrgData({
-          ...bmrgData,
-          states: [...bmrgData.states, newState],
-        });
+        setBmrgData({ ...bmrgData, states: [...bmrgData.states, newState] });
       }
     }
 
     setIsNodeModalOpen(false);
   };
 
-  // save state details from sidebar
-  const handleSaveStateDetails = (details: StateDetails) => {
-    if (isEditing && currentNodeId) {
-      setNodes((prevNodes) =>
-        prevNodes.map((node) => {
-          if (node.id === currentNodeId) {
-            return {
-              ...node,
-              data: {
-                ...node.data,
-                label: details.stateName,
-                attributes: {
-                  stateName: details.stateName,
-                  stateNumber: details.stateNumber,
-                  vastClass: details.vastClass,
-                  condition: node.data.attributes?.condition || "",
-                  conditionLower: details.conditionLower,
-                  conditionUpper: details.conditionUpper,
-                  eksConditionEstimate: details.eksConditionEstimate,
-                },
-              },
-            } as AppNode;
-          }
-          return node;
-        })
-      );
-
-      if (bmrgData && currentNodeId.startsWith("state-")) {
-        const stateId = parseInt(currentNodeId.replace("state-", ""));
-        const updatedStates = bmrgData.states.map((state) => {
-          if (state.state_id === stateId) {
-            return {
-              ...state,
-              state_name: details.stateName,
-              condition_lower: details.conditionLower,
-              condition_upper: details.conditionUpper,
-              eks_condition_estimate: details.eksConditionEstimate,
-              vast_state: {
-                ...state.vast_state,
-                vast_class: details.vastClass,
-              },
-            };
-          }
-          return state;
-        });
-
-        setBmrgData({
-          ...bmrgData,
-          states: updatedStates,
-        });
-      }
-    }
-
-    setIsSidebarOpen(false);
-  };
-
-  // edge click/dblclick
-  const onEdgeClick: EdgeMouseHandler = useCallback((event, edge) => {
-    event.stopPropagation();
-    console.log("Edge clicked:", edge.id);
-  }, []);
+  // Edge click/double-click
+  const onEdgeClick: EdgeMouseHandler = useCallback(
+    (event, edge) => {
+      event.stopPropagation();
+      if (!bmrgData) return;
+      const transitionId = parseInt(edge.id.replace("transition-", ""));
+      const t = bmrgData.transitions.find((x) => x.transition_id === transitionId) || null;
+      setSideTransition(t);
+      setIsTransitionSideOpen(!!t);
+    },
+    [bmrgData]
+  );
 
   const onEdgeDoubleClick: EdgeMouseHandler = useCallback(
     (event, edge) => {
       event.stopPropagation();
-      if (bmrgData) {
-        const transitionId = parseInt(edge.id.replace("transition-", ""));
-        const transition = bmrgData.transitions.find((t) => t.transition_id === transitionId);
-        if (transition) {
-          setCurrentTransition(transition);
-          setIsTransitionModalOpen(true);
-        } else {
-          setIsTransitionModalOpen(true);
-          createNewEdge(edge);
-        }
+      if (!bmrgData) return;
+
+      const transitionId = parseInt(edge.id.replace("transition-", ""));
+      const transition = bmrgData.transitions.find((t) => t.transition_id === transitionId);
+      if (transition) {
+        setCurrentTransition(transition);
+        setIsTransitionModalOpen(true);
+      } else {
+        setIsTransitionModalOpen(true);
+        createNewEdge(edge);
       }
     },
     [bmrgData]
   );
 
-  // save transition
+  // Save transition (both panels)
   const handleSaveTransition = (updatedTransition: TransitionData) => {
     if (bmrgData) {
       const newBmrgData = updateTransition(bmrgData, updatedTransition);
       setBmrgData(newBmrgData);
 
       setEdges((prevEdges) =>
-        prevEdges.map((edge) => {
-          if (edge.id === `transition-${updatedTransition.transition_id}`) {
-            return {
-              ...edge,
-              data: {
-                ...edge.data,
-                transitionDelta: updatedTransition.transition_delta,
-                time25: updatedTransition.time_25,
-                time100: updatedTransition.time_100,
-                notes: updatedTransition.notes,
-              },
-            };
-          }
-          return edge;
-        })
+        prevEdges.map((edge) =>
+          edge.id === `transition-${updatedTransition.transition_id}`
+            ? {
+                ...edge,
+                data: {
+                  ...edge.data,
+                  transitionDelta: updatedTransition.transition_delta,
+                  time25: updatedTransition.time_25,
+                  time100: updatedTransition.time_100,
+                  notes: updatedTransition.notes,
+                },
+              }
+            : edge
+        )
       );
+
+      refreshEdges();
     }
 
     setIsTransitionModalOpen(false);
   };
 
-  // save model
+  // Save model to disk
   const handleSaveModel = async () => {
     if (!bmrgData) return;
     try {
@@ -583,20 +602,7 @@ function App() {
     }
   };
 
-  // handle support request submission
-  const handleSupportSubmit = async (title: string, content: string) => {
-    // TODO: Implement API call to backend support endpoint
-    // For now, just log the support request
-    console.log("Support request submitted:", { title, content, timestamp: new Date().toISOString() });
-    
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Show success message
-    alert("Support request submitted successfully! Our team will get back to you soon.");
-  };
-
-  // re-layout
+  // Re-layout nodes
   const handleReLayout = () => {
     if (!bmrgData) return;
     const initialNodes = statesToNodes(
@@ -608,71 +614,35 @@ function App() {
     setNodes(initialNodes);
   };
 
-  // toggle edge creation
+  // Toggle edge-creation mode
   const toggleEdgeCreationMode = () => {
     if (edgeCreationMode) {
       setStartNodeId(null);
-      setNodes((prevNodes) =>
-        prevNodes.map((node) => ({
-          ...node,
-          data: {
-            ...node.data,
-            isSelected: false,
-          },
-        }))
+      setNodes((prev) =>
+        prev.map((node) => ({ ...node, data: { ...node.data, isSelected: false } }))
       );
     }
     setEdgeCreationMode(!edgeCreationMode);
   };
 
-  // load edges with filter
+  // Load edges with current filters
   const loadExistingEdges = () => {
-    if (!bmrgData) return;
-
-    const initialEdges = transitionsToEdges(
-      bmrgData.transitions.filter((t) => t.time_25 === 1),
-      nodes,
-      showSelfTransitions
-    );
-
-    const filteredEdges = filterEdgesByDelta(initialEdges, deltaFilter);
-    setEdges(filteredEdges);
+    refreshEdges();
   };
 
-  // toggle self-transitions
+  // Toggle filters
   const toggleSelfTransitions = () => {
     const newValue = !showSelfTransitions;
     setShowSelfTransitions(newValue);
-
-    if (bmrgData) {
-      const newEdges = transitionsToEdges(
-        bmrgData.transitions.filter((t) => t.time_25 === 1),
-        nodes,
-        newValue
-      );
-
-      const filteredEdges = filterEdgesByDelta(newEdges, deltaFilter);
-      setEdges(filteredEdges);
-    }
+    if (bmrgData) refreshEdges();
   };
 
-  // toggle delta filter
   const toggleDeltaFilter = (option: DeltaFilterOption) => {
     setDeltaFilter(option);
-
-    if (bmrgData) {
-      const allEdges = transitionsToEdges(
-        bmrgData.transitions.filter((t) => t.time_25 === 1),
-        nodes,
-        showSelfTransitions
-      );
-
-      const filteredEdges = option === "all" ? allEdges : filterEdgesByDelta(allEdges, option);
-      setEdges(filteredEdges);
-    }
+    if (bmrgData) refreshEdges();
   };
 
-  // nodes with callbacks
+  // Attach callbacks to nodes
   const nodesWithCallbacks = nodes.map((node) => ({
     ...node,
     data: {
@@ -685,12 +655,7 @@ function App() {
 
   const nodeTypes = { ...baseNodeTypes, custom: CustomNode };
   const customEdgeTypes = { ...edgeTypes, custom: CustomEdge };
-
-  const defaultEdgeOptions = {
-    type: "custom",
-    animated: false,
-    updatable: true,
-  };
+  const defaultEdgeOptions = { type: "custom", animated: false, updatable: true };
 
   if (isLoading) {
     return (
@@ -699,7 +664,7 @@ function App() {
         <div className="loading-spinner"></div>
       </div>
     );
-  }
+    }
 
   if (error) {
     return (
@@ -717,6 +682,7 @@ function App() {
     <>
       <LogoutButton />
       <div className="app-container">
+        {/* Top toolbar */}
         <div className="controls-toolbar">
           <button onClick={openAddNodeModal} className="button button-primary">
             ➕ Add Node
@@ -752,22 +718,7 @@ function App() {
             {showSelfTransitions ? "🔄 Hide Self Transitions" : "🔄 Show Self Transitions"}
           </button>
 
-          <button
-            onClick={() => setIsColorConfigModalOpen(true)}
-            className="button button-info"
-            title="Configure Node Colors"
-          >
-            🎨 Color Config
-          </button>
-
-          <button
-            onClick={() => setIsSupportModalOpen(true)}
-            className="button button-help"
-            title="Contact Support Team"
-          >
-            ❓ Help
-          </button>
-
+          {/* Delta filter group */}
           <div className="filter-group">
             <span className="filter-label">Filter by Delta:</span>
             <button
@@ -796,19 +747,44 @@ function App() {
             </button>
           </div>
 
+          {/* New toggles: Plausible only / Notes only (use filter-chip to avoid white text) */}
+          <div className="filter-group" style={{ marginLeft: 8 }}>
+            <label className="filter-chip">
+              <input
+                type="checkbox"
+                checked={plausibleOnly}
+                onChange={(e) => {
+                  setPlausibleOnly(e.target.checked);
+                  refreshEdges();
+                }}
+              />
+              Plausible only
+            </label>
+
+            <label className="filter-chip">
+              <input
+                type="checkbox"
+                checked={hasNotesOnly}
+                onChange={(e) => {
+                  setHasNotesOnly(e.target.checked);
+                  refreshEdges();
+                }}
+              />
+              Notes only
+            </label>
+          </div>
+
+          {/* Info panel + collapsible Tips (docked to the left) */}
           {bmrgData && (
-            <div className="info-with-tips">
-              <div className="info-panel">
+            <>
+              <div className="info-panel" style={{ marginLeft: 12 }}>
                 <strong>{bmrgData.stm_name}</strong>
                 <span className="info-separator">•</span>
                 <span>{bmrgData.states.length} states</span>
                 <span className="info-separator">•</span>
                 <span>
                   {bmrgData.transitions.filter((t) => t.time_25 === 1).length} plausible transitions
-                  <span className="info-text-muted">
-                    {" "}
-                    (of {bmrgData.transitions.length} total)
-                  </span>
+                  <span className="info-text-muted"> (of {bmrgData.transitions.length} total)</span>
                 </span>
                 {deltaFilter !== "all" && (
                   <>
@@ -820,33 +796,35 @@ function App() {
                 )}
               </div>
 
-              {/* Tips：可折叠 */}
-              {showTips ? (
-                <div className="tips-popover">
-                  <div className="tips-popover-header">
-                    <h3 className="tips-title">Tips</h3>
-                    <button className="tips-close" onClick={() => setShowTips(false)}>
-                      hold ▲
-                    </button>
+              <div className="tips-dock">
+                {showTips ? (
+                  <div className="tips-popover">
+                    <div className="tips-popover-header">
+                      <h3 className="tips-title">Tips</h3>
+                      <button className="tips-close" onClick={() => setShowTips(false)}>
+                        hold ▲
+                      </button>
+                    </div>
+                    <p className="tips-item">• Click a node to edit it</p>
+                    <p className="tips-item">• Use Create Edge button to connect nodes</p>
+                    <p className="tips-item">• Click an edge to select it</p>
+                    <p className="tips-item">• Double-click an edge to edit transition</p>
+                    <p className="tips-item">• Drag edge endpoints to reconnect</p>
+                    <p className="tips-item">• Use Re-layout to optimize layout</p>
+                    <p className="tips-item">• Toggle self-transitions visibility</p>
+                    <p className="tips-item">• Filter transitions by delta value</p>
                   </div>
-                  <p className="tips-item">• Click a node to edit it</p>
-                  <p className="tips-item">• Use Create Edge button to connect nodes</p>
-                  <p className="tips-item">• Click an edge to select it</p>
-                  <p className="tips-item">• Double-click an edge to edit transition</p>
-                  <p className="tips-item">• Drag edge endpoints to reconnect</p>
-                  <p className="tips-item">• Use Re-layout to optimize layout</p>
-                  <p className="tips-item">• Toggle self-transitions visibility</p>
-                  <p className="tips-item">• Filter transitions by delta value</p>
-                </div>
-              ) : (
-                <button className="tips-chip" onClick={() => setShowTips(true)}>
-                  Tips ▾
-                </button>
-              )}
-            </div>
+                ) : (
+                  <button className="tips-chip" onClick={() => setShowTips(true)}>
+                    Tips ▾
+                  </button>
+                )}
+              </div>
+            </>
           )}
         </div>
 
+        {/* Canvas */}
         <ReactFlow
           nodes={nodesWithCallbacks}
           nodeTypes={nodeTypes}
@@ -857,9 +835,9 @@ function App() {
           onConnect={onConnect}
           onEdgeClick={onEdgeClick}
           onEdgeDoubleClick={onEdgeDoubleClick}
-          edgesFocusable={true}
-          elementsSelectable={true}
-          edgesReconnectable={true}
+          edgesFocusable
+          elementsSelectable
+          edgesReconnectable
           reconnectRadius={10}
           fitView
           fitViewOptions={{ padding: 0.2, includeHiddenNodes: false }}
@@ -867,21 +845,32 @@ function App() {
           defaultEdgeOptions={defaultEdgeOptions}
           minZoom={0.2}
           maxZoom={2}
-          nodesDraggable={true}
+          nodesDraggable
           connectOnClick={false}
           zoomOnDoubleClick={false}
-          panOnDrag={true}
-          panOnScroll={true}
-          snapToGrid={true}
+          panOnDrag
+          panOnScroll
+          snapToGrid
           snapGrid={[20, 20]}
         >
           <Background />
           <MiniMap />
           <Controls />
-          {/* Tips 不再放在 ReactFlow 内 */}
         </ReactFlow>
 
-        {/* Edge creation help overlay */}
+        {/* Right-side Transition Property Panel */}
+        <TransitionPanel
+          open={isTransitionSideOpen}
+          onClose={() => setIsTransitionSideOpen(false)}
+          transition={sideTransition}
+          stateNames={stateNameMap}
+          onSave={(updated) => {
+            handleSaveTransition(updated);
+            setIsTransitionSideOpen(false);
+          }}
+        />
+
+        {/* Edge-creation hint */}
         {edgeCreationMode && (
           <div className="edge-creation-help">
             <span className="edge-creation-help-icon">ℹ️</span>
@@ -891,7 +880,7 @@ function App() {
           </div>
         )}
 
-        {/* Node Modal */}
+        {/* Modals */}
         <NodeModal
           isOpen={isNodeModalOpen}
           onClose={() => setIsNodeModalOpen(false)}
@@ -900,7 +889,6 @@ function App() {
           isEditing={isEditing}
         />
 
-        {/* Transition Modal */}
         <TransitionModal
           isOpen={isTransitionModalOpen}
           onClose={() => setIsTransitionModalOpen(false)}
@@ -908,40 +896,18 @@ function App() {
           transition={currentTransition}
           stateNames={stateNameMap}
         />
-
-        {/* Support Modal */}
-        <SupportModal
-          isOpen={isSupportModalOpen}
-          onClose={() => setIsSupportModalOpen(false)}
-          onSubmit={handleSupportSubmit}
-        />
-
-        {/* Color Configuration Modal */}
-        <ColorConfigModal
-          isOpen={isColorConfigModalOpen}
-          onClose={() => setIsColorConfigModalOpen(false)}
-        />
-
-        {/* State Details Sidebar */}
-        <StateDetailsSidebar
-          isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
-          onSave={handleSaveStateDetails}
-          initialValues={initialSidebarValues}
-          isEditing={isEditing}
-        />
       </div>
     </>
   );
 }
 
-// Wrap the App component with ReactFlowProvider and ColorConfigProvider
+/* -------------------------- Providers Wrapper -------------------------- */
 export default function AppWithProvider() {
   return (
-    <ColorConfigProvider>
-      <ReactFlowProvider>
+    <ReactFlowProvider>
+      <ColorConfigProvider>
         <App />
-      </ReactFlowProvider>
-    </ColorConfigProvider>
+      </ColorConfigProvider>
+    </ReactFlowProvider>
   );
 }

@@ -30,18 +30,6 @@
 .button-secondary { background: #6c757d; }
 .button-info { background: #17a2b8; }
 
-.button-help {
-  background: #ffc107;
-  color: #212529;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-.button-help:hover {
-  background: #e0a800;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
 .button-disabled { opacity: 0.7; cursor: default; }
 
 /* ========= Info panel ========= */
@@ -61,15 +49,13 @@
 .tips-dock {
   position: absolute;
   left: 0;
-  top: 90px;
+  top: 44px;
   z-index: 1000;
 }
 
-/* container of tips content/chip */
 .info-with-tips {
   position: relative;
   display: inline-block;
-  margin-left: 0;
 }
 
 /* Expanded Tips panel */
@@ -83,183 +69,42 @@
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   padding: 12px 16px;
-  z-index: 1000;
-}
-.tips-popover-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.tips-title { margin: 0; }
-.tips-item { margin: 0 0 6px 0; font-size: 13px; color: #334155; }
-.tips-close {
-  border: 1px solid #e5e7eb;
-  background: #f8fafc;
-  border-radius: 6px;
-  padding: 4px 8px;
-  cursor: pointer;
-}
+  z-index: 100
 
-/* Collapsed Tips chip button (docked) */
-.tips-chip {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  padding: 6px 10px;
-  border: 1px solid #e5e7eb;
-  border-radius: 9999px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  cursor: pointer;
-}
-
-/* ========= Loading / Error screens ========= */
-.loading-container,
-.error-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  text-align: center;
-}
-.loading-text,
-.error-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-.error-title { color: #e74c3c; }
-
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
-
-.error-button {
-  padding: 10px 20px;
-  background: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* ========= Edge creation mode ========= */
-.edge-creation-active .node-container { cursor: crosshair !important; }
-.node-selected {
-  box-shadow: 0 0 0 4px #007bff, 0 2px 5px rgba(0,0,0,0.1) !important;
-}
-
-.button-edge-creation {
-  background: #007bff;
-  position: relative;
-}
-.button-edge-creation.active { background: #28a745; }
-.button-edge-creation.active::after {
-  content: '';
-  position: absolute; top: 3px; right: 3px;
-  width: 8px; height: 8px; background: #fff; border-radius: 50%;
-  animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255,255,255,0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-}
-
-/* Bottom floating hint while creating edges */
-.edge-creation-help {
-  position: fixed;
-  bottom: 20px; left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,0.7); color: #fff;
-  padding: 8px 16px; border-radius: 20px;
-  font-size: 14px; z-index: 1000; display: flex; align-items: center;
-  animation: fade-in 0.3s ease-in-out;
-}
-.edge-creation-help-icon { margin-right: 8px; font-size: 18px; }
-@keyframes fade-in {
-  from { opacity: 0; transform: translate(-50%, 10px); }
-  to   { opacity: 1; transform: translate(-50%, 0); }
-}
-
-/* ========= Filter group ========= */
-.filter-group {
-  display: flex;
-  align-items: center;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  padding: 5px 10px;
-  margin-left: 10px;
-  gap: 6px;
-}
-.filter-label {
-  margin-right: 6px;
-  font-size: 14px;
-  color: #495057;
-  white-space: nowrap;
-}
-.filter-group input[type="checkbox"] {
-  margin: 0 4px 0 0;
-  vertical-align: middle;
-}
-
-/* Filter buttons */
-.button-filter {
-  background: #e9ecef;
-  color: #495057;
-  font-size: 12px;
-  padding: 4px 8px;
-  transition: all 0.2s ease;
-  border: none;
-}
-.button-filter:hover:not(.active) { background: #dee2e6; }
-.button-filter.active {
-  background: #007bff; color: #fff;
-  transform: scale(1.05);
-  animation: pulse-filter 1s ease-in-out;
-}
-@keyframes pulse-filter { 0%{transform:scale(1)} 50%{transform:scale(1.05)} 100%{transform:scale(1)} }
-
-/* Delta category accents */
-.button-filter.positive { border-left: 3px solid #28a745; }
-.button-filter.positive.active { background: #28a745; }
-.button-filter.neutral  { border-left: 3px solid #6c757d; }
-.button-filter.neutral.active  { background: #6c757d; }
-.button-filter.negative { border-left: 3px solid #dc3545; }
-.button-filter.negative.active { background: #dc3545; }
-
-/* Delta badge on info panel */
-.delta-filter-badge {
-  font-size: 12px; padding: 2px 6px; border-radius: 4px; font-weight: bold;
-}
-.delta-filter-badge.positive { background: #d4edda; color: #155724; }
-.delta-filter-badge.neutral  { background: #e2e3e5; color: #383d41; }
-.delta-filter-badge.negative { background: #f8d7da; color: #721c24; }
-
-/* ========= Right-side Transition panel ========= */
-.transition-panel{
+/* put this near existing .controls-toolbar  */
+.controls-toolbar {
   position: absolute;
-  top: 72px; right: 12px; bottom: 12px; width: 360px;
-  background: #fff;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  /* NEW: improve readability */
+  background: rgba(255, 255, 255, 0.96);
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
-  padding: 16px;
-  z-index: 1000;
-  overflow: auto;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  align-items: center;
+}
+/* Compact chip style for the two right-side toggles */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fff;   /* white background for contrast */
+  color: #111;        /* dark text so it's readable */
+  font-size: 12px;
+  line-height: 1;
 }
 
-/* ========= React Flow tweaks (optional) ========= */
-.react-flow__panel {
-  z-index: 50;
+.filter-chip input[type="checkbox"] {
+  margin: 0;          /* remove default extra spacing */
+  accent-color: #2563eb;  /* nicer checkbox color (optional) */
 }
+
