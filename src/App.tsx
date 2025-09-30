@@ -375,7 +375,9 @@ function App() {
           stateName: node.data.label,
           stateNumber: node.data.attributes?.stateNumber || "",
           vastClass: node.data.attributes?.vastClass || "",
-          condition: node.data.attributes?.condition || "",
+          conditionLower: node.data.attributes?.conditionLower ?? 0,
+          conditionUpper: node.data.attributes?.conditionUpper ?? 1,
+          eksConditionEstimate: node.data.attributes?.eksConditionEstimate ?? 0.5,
           id: nodeId,
         });
         setIsEditing(true);
@@ -462,7 +464,9 @@ function App() {
                     stateName: attributes.stateName,
                     stateNumber: attributes.stateNumber,
                     vastClass: attributes.vastClass,
-                    condition: attributes.condition,
+                    conditionLower: attributes.conditionLower,
+                    conditionUpper: attributes.conditionUpper,
+                    eksConditionEstimate: attributes.eksConditionEstimate,
                   },
                 },
               }
@@ -473,7 +477,15 @@ function App() {
       if (bmrgData && currentNodeId.startsWith("state-")) {
         const stateId = parseInt(currentNodeId.replace("state-", ""));
         const updatedStates = bmrgData.states.map((s) =>
-          s.state_id === stateId ? { ...s, state_name: attributes.stateName } : s
+          s.state_id === stateId
+            ? {
+                ...s,
+                state_name: attributes.stateName,
+                condition_lower: attributes.conditionLower,
+                condition_upper: attributes.conditionUpper,
+                eks_condition_estimate: attributes.eksConditionEstimate,
+              }
+            : s
         );
         setBmrgData({ ...bmrgData, states: updatedStates });
       }
@@ -493,7 +505,9 @@ function App() {
             stateName: attributes.stateName,
             stateNumber: attributes.stateNumber,
             vastClass: attributes.vastClass,
-            condition: attributes.condition,
+            conditionLower: attributes.conditionLower,
+            conditionUpper: attributes.conditionUpper,
+            eksConditionEstimate: attributes.eksConditionEstimate,
           },
         },
         position: { x: centerX, y: centerY },
@@ -515,9 +529,9 @@ function App() {
             eks_substate: "",
             link: "",
           },
-          condition_upper: 1.0,
-          condition_lower: 0.0,
-          eks_condition_estimate: -9999,
+          condition_upper: attributes.conditionUpper ?? 1.0,
+          condition_lower: attributes.conditionLower ?? 0.0,
+          eks_condition_estimate: attributes.eksConditionEstimate ?? -9999,
           elicitation_type: "user-created",
           attributes: null,
         };

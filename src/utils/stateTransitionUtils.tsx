@@ -193,13 +193,7 @@ function optimizeNodeLayout(states: StateData[], transitions: TransitionData[]):
     return positions;
 }
 
-// Create a formatted condition string from the data
-function getConditionString(state: StateData): string {
-    if (state.condition_upper === -9999 || state.condition_lower === -9999) {
-        return 'No condition data';
-    }
-    return `Condition range: ${state.condition_lower.toFixed(2)} - ${state.condition_upper.toFixed(2)}`;
-}
+// Note: display of condition range is now computed in the UI from bounds
 
 // Convert state data to node attributes
 function stateToNodeAttributes(state: StateData): NodeAttributes {
@@ -207,7 +201,6 @@ function stateToNodeAttributes(state: StateData): NodeAttributes {
         stateName: state.state_name,
         stateNumber: state.state_id.toString(),
         vastClass: state.vast_state.vast_class,
-        condition: getConditionString(state),
         conditionLower: state.condition_lower === -9999 ? 0 : state.condition_lower,
         conditionUpper: state.condition_upper === -9999 ? 1 : state.condition_upper,
         eksConditionEstimate: state.eks_condition_estimate === -9999 ? 0.5 : state.eks_condition_estimate,

@@ -58,7 +58,8 @@ export function CustomNode({ data, id }: CustomNodeProps) {
     // Get the state attributes if available
     const stateNumber = data.attributes?.stateNumber || '';
     const vastClass = data.attributes?.vastClass || '';
-    const condition = data.attributes?.condition || '';
+    const conditionLower = data.attributes?.conditionLower;
+    const conditionUpper = data.attributes?.conditionUpper;
 
     // Check if this node is currently selected during edge creation
     const isSelected = data.isSelected || false;
@@ -119,10 +120,10 @@ export function CustomNode({ data, id }: CustomNodeProps) {
                         {data.label}
                     </div>
 
-                    {/* Condition info */}
-                    {condition && (
+                    {/* Condition info from bounds */}
+                    {typeof conditionLower === 'number' && typeof conditionUpper === 'number' && (
                         <div className="condition-info">
-                            {condition}
+                            {`Condition range: ${conditionLower.toFixed(2)} - ${conditionUpper.toFixed(2)}`}
                         </div>
                     )}
                 </>

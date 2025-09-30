@@ -4,7 +4,6 @@ export interface NodeAttributes {
     stateName: string;
     stateNumber: string;
     vastClass: string;
-    condition: string;
     conditionLower: number;
     conditionUpper: number;
     eksConditionEstimate: number;
@@ -34,23 +33,47 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
         stateName: '',
         stateNumber: '',
         vastClass: '',
-        condition: '',
         conditionLower: 0,
         conditionUpper: 1,
         eksConditionEstimate: 0.5,
     });
+    const [errors, setErrors] = useState<Record<string, string>>({});
 
     // Update form when initialValues changes (when editing an existing node)
     useEffect(() => {
         if (initialValues) {
-            setAttributes(initialValues);
+            // Backward compatibility: if legacy condition text exists, try to parse bounds
+            let lower = initialValues.conditionLower ?? 0;
+            let upper = initialValues.conditionUpper ?? 1;
+
+            const legacy: any = (initialValues as any).condition;
+            if (typeof legacy === 'string' && legacy.toLowerCase().includes('condition range')) {
+                const match = legacy.match(/([0-9]*\.?[0-9]+)\s*-\s*([0-9]*\.?[0-9]+)/);
+                if (match) {
+                    const l = parseFloat(match[1]);
+                    const u = parseFloat(match[2]);
+                    if (!Number.isNaN(l) && !Number.isNaN(u)) {
+                        lower = l;
+                        upper = u;
+                    }
+                }
+            }
+
+            setAttributes({
+                stateName: initialValues.stateName,
+                stateNumber: initialValues.stateNumber,
+                vastClass: initialValues.vastClass,
+                conditionLower: lower,
+                conditionUpper: upper,
+                eksConditionEstimate: initialValues.eksConditionEstimate ?? 0.5,
+                id: initialValues.id,
+            });
         } else {
             // Reset form when opening for a new node
             setAttributes({
                 stateName: '',
                 stateNumber: '',
                 vastClass: '',
-                condition: '',
                 conditionLower: 0,
                 conditionUpper: 1,
                 eksConditionEstimate: 0.5,
@@ -60,14 +83,30 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
+        const isNumericField = name === 'conditionLower' || name === 'conditionUpper' || name === 'eksConditionEstimate';
+        const nextValue = isNumericField ? (Number.isNaN(parseFloat(value)) ? 0 : parseFloat(value)) : value;
         setAttributes(prev => ({
             ...prev,
-            [name]: value
+            [name]: nextValue as any
         }));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        const newErrors: Record<string, string> = {};
+        const { conditionLower, conditionUpper, eksConditionEstimate } = attributes;
+        const within01 = (v: number) => v >= 0 && v <= 1;
+
+        if (!within01(conditionLower)) newErrors.conditionLower = 'Must be between 0 and 1';
+        if (!within01(conditionUpper)) newErrors.conditionUpper = 'Must be between 0 and 1';
+        if (!within01(eksConditionEstimate)) newErrors.eksConditionEstimate = 'Must be between 0 and 1';
+        if ((Number.isFinite(conditionLower) && Number.isFinite(conditionUpper)) && conditionLower >= conditionUpper) {
+            newErrors.conditionLower = 'Lower bound must be less than upper bound';
+        }
+
+        setErrors(newErrors);
+        if (Object.keys(newErrors).length > 0) return;
+
         onSave(attributes);
     };
 
@@ -163,23 +202,7 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                         </label>
                     </div>
 
-                    <div style={{ marginBottom: '15px' }}>
-                        <label style={{ display: 'block', marginBottom: '5px' }}>
-                            Condition:
-                            <textarea
-                                name="condition"
-                                value={attributes.condition}
-                                onChange={handleChange}
-                                style={{
-                                    width: '100%',
-                                    padding: '8px',
-                                    borderRadius: '4px',
-                                    border: '1px solid #ccc',
-                                    minHeight: '80px'
-                                }}
-                            />
-                        </label>
-                    </div>
+                    {/* Removed legacy free-text Condition. Now using numeric bounds. */}
 
                     <div style={{ marginBottom: '15px' }}>
                         <label style={{ display: 'block', marginBottom: '5px' }}>
@@ -199,6 +222,9 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                                     border: '1px solid #ccc'
                                 }}
                             />
+                            {errors.conditionLower && (
+                                <div style={{ color: '#dc2626', fontSize: 12, marginTop: 4 }}>{errors.conditionLower}</div>
+                            )}
                         </label>
                     </div>
 
@@ -220,6 +246,9 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                                     border: '1px solid #ccc'
                                 }}
                             />
+                            {errors.conditionUpper && (
+                                <div style={{ color: '#dc2626', fontSize: 12, marginTop: 4 }}>{errors.conditionUpper}</div>
+                            )}
                         </label>
                     </div>
 
@@ -241,6 +270,9 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                                     border: '1px solid #ccc'
                                 }}
                             />
+                            {errors.eksConditionEstimate && (
+                                <div style={{ color: '#dc2626', fontSize: 12, marginTop: 4 }}>{errors.eksConditionEstimate}</div>
+                            )}
                         </label>
                     </div>
 
