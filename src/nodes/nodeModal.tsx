@@ -7,6 +7,7 @@ export interface NodeAttributes {
     conditionLower: number;
     conditionUpper: number;
     eksConditionEstimate: number;
+    imageUrl?: string;
     id?: string; // Optional for editing existing nodes
 }
 
@@ -38,6 +39,7 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
         eksConditionEstimate: 0.5,
     });
     const [errors, setErrors] = useState<Record<string, string>>({});
+    const [pendingImage, setPendingImage] = useState<string | null>(null);
 
     // Update form when initialValues changes (when editing an existing node)
     useEffect(() => {
@@ -66,8 +68,10 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                 conditionLower: lower,
                 conditionUpper: upper,
                 eksConditionEstimate: initialValues.eksConditionEstimate ?? 0.5,
+                imageUrl: initialValues.imageUrl,
                 id: initialValues.id,
             });
+            setPendingImage(null);
         } else {
             // Reset form when opening for a new node
             setAttributes({
@@ -78,6 +82,7 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                 conditionUpper: 1,
                 eksConditionEstimate: 0.5,
             });
+            setPendingImage(null);
         }
     }, [initialValues, isOpen]);
 
@@ -108,6 +113,32 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
         if (Object.keys(newErrors).length > 0) return;
 
         onSave(attributes);
+    };
+
+    // Handle file input change: load as Data URL for preview
+    const handleImageSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) {
+            alert('Please select an image file.');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => {
+            const result = typeof reader.result === 'string' ? reader.result : null;
+            setPendingImage(result);
+        };
+        reader.readAsDataURL(file);
+    };
+
+    // Persist the pending image into attributes
+    const handleSaveImage = () => {
+        if (!pendingImage) return;
+        setAttributes(prev => ({
+            ...prev,
+            imageUrl: pendingImage || undefined,
+        }));
+        setPendingImage(null);
     };
 
     if (!isOpen) return null;
@@ -274,6 +305,35 @@ export function NodeModal({ isOpen, onClose, onSave, initialValues, isEditing }:
                                 <div style={{ color: '#dc2626', fontSize: 12, marginTop: 4 }}>{errors.eksConditionEstimate}</div>
                             )}
                         </label>
+                    </div>
+
+                    {/* Image upload and preview (moved to bottom) */}
+                    <div style={{ marginBottom: '15px' }}>
+                        <label style={{ display: 'block', marginBottom: '5px' }}>
+                            Image:
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageSelected}
+                                style={{ display: 'block', marginTop: 6 }}
+                            />
+                        </label>
+                        {attributes.imageUrl && (
+                            <div style={{ marginTop: 8 }}>
+                                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>Saved Image Preview</div>
+                                <img src={attributes.imageUrl} alt="Saved" style={{ width: '100%', maxHeight: 180, objectFit: 'contain', border: '1px solid #e5e7eb', borderRadius: 4 }} />
+                            </div>
+                        )}
+                        {pendingImage && (
+                            <div style={{ marginTop: 8 }}>
+                                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>New Image (not saved yet)</div>
+                                <img src={pendingImage} alt="Pending" style={{ width: '100%', maxHeight: 180, objectFit: 'contain', border: '1px dashed #94a3b8', borderRadius: 4 }} />
+                                <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                                    <button type="button" onClick={handleSaveImage} className="button button-success">Save Image</button>
+                                    <button type="button" onClick={() => setPendingImage(null)} className="button button-secondary">Discard</button>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>

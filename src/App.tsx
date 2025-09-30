@@ -378,6 +378,7 @@ function App() {
           conditionLower: node.data.attributes?.conditionLower ?? 0,
           conditionUpper: node.data.attributes?.conditionUpper ?? 1,
           eksConditionEstimate: node.data.attributes?.eksConditionEstimate ?? 0.5,
+          imageUrl: node.data.attributes?.imageUrl,
           id: nodeId,
         });
         setIsEditing(true);
@@ -467,6 +468,7 @@ function App() {
                     conditionLower: attributes.conditionLower,
                     conditionUpper: attributes.conditionUpper,
                     eksConditionEstimate: attributes.eksConditionEstimate,
+                    imageUrl: attributes.imageUrl,
                   },
                 },
               }
@@ -484,6 +486,10 @@ function App() {
                 condition_lower: attributes.conditionLower,
                 condition_upper: attributes.conditionUpper,
                 eks_condition_estimate: attributes.eksConditionEstimate,
+                attributes: {
+                  ...(s.attributes || {}),
+                  imageUrl: attributes.imageUrl,
+                },
               }
             : s
         );
@@ -508,6 +514,7 @@ function App() {
             conditionLower: attributes.conditionLower,
             conditionUpper: attributes.conditionUpper,
             eksConditionEstimate: attributes.eksConditionEstimate,
+            imageUrl: attributes.imageUrl,
           },
         },
         position: { x: centerX, y: centerY },
@@ -533,7 +540,7 @@ function App() {
           condition_lower: attributes.conditionLower ?? 0.0,
           eks_condition_estimate: attributes.eksConditionEstimate ?? -9999,
           elicitation_type: "user-created",
-          attributes: null,
+          attributes: attributes.imageUrl ? { imageUrl: attributes.imageUrl } : null,
         };
         setBmrgData({ ...bmrgData, states: [...bmrgData.states, newState] });
       }
