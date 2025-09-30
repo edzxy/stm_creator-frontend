@@ -169,7 +169,7 @@ function TransitionPanel({
 function App() {
   // Nodes & Edges
   const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
-  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const [edges, setEdges] = useEdgesState<Edge>([]);
 
   // Edge-creation mode
   const [edgeCreationMode, setEdgeCreationMode] = useState(false);

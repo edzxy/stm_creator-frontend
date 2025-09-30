@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TransitionData } from "../utils/stateTransitionUtils";
 
 type Props = {
