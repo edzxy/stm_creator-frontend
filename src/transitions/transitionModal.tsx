@@ -23,7 +23,13 @@ interface ChainPart {
 }
 
 // Component to display causal chain drivers grouped by chain part
-const CausalChainDisplay = ({ causalChain }: { causalChain: ChainPart[] }) => {
+const CausalChainDisplay = ({
+    causalChain,
+    onDeleteDriver,
+}: {
+    causalChain: ChainPart[];
+    onDeleteDriver?: (chainPart: string, driverGroup: string, driverName: string) => void;
+}) => {
     // Counts total drivers for conditional rendering
     const totalDrivers = causalChain.reduce((count, part) => count + part.drivers.length, 0);
 
@@ -72,7 +78,17 @@ const CausalChainDisplay = ({ causalChain }: { causalChain: ChainPart[] }) => {
                                             <ul className="driver-list">
                                                 {drivers.map((driver, driverIndex) => (
                                                     <li key={driverIndex} className="driver-item">
-                                                        {driver.driver}
+                                                        <span className="driver-item-text">{driver.driver}</span>
+                                                        {onDeleteDriver && (
+                                                            <button
+                                                                type="button"
+                                                                className="driver-item-delete"
+                                                                title="Remove"
+                                                                onClick={() => onDeleteDriver(chainPart.chain_part, driver.driver_group, driver.driver)}
+                                                            >
+                                                                ×
+                                                            </button>
+                                                        )}
                                                     </li>
                                                 ))}
                                             </ul>
@@ -91,6 +107,10 @@ const CausalChainDisplay = ({ causalChain }: { causalChain: ChainPart[] }) => {
 export function TransitionModal({ isOpen, onClose, onSave, transition, stateNames }: TransitionModalProps) {
     const [transitionData, setTransitionData] = useState<TransitionData | null>(null);
     const [activeTab, setActiveTab] = useState<'basic' | 'causal-chain'>('basic');
+    // Local add-form state (placeholder options to be replaced later)
+    const [newChainPart, setNewChainPart] = useState<string>("");
+    const [newDriverGroup, setNewDriverGroup] = useState<string>("");
+    const [newDriverName, setNewDriverName] = useState<string>("");
 
     // Update form when transition changes
     useEffect(() => {
@@ -130,6 +150,70 @@ export function TransitionModal({ isOpen, onClose, onSave, transition, stateName
         ? transitionData.causal_chain.reduce((count, part) => count + part.drivers.length, 0)
         : 0;
 
+    // Helpers for Causal Chain editing
+    const uniqueChainParts = Array.from(
+        new Set(
+            (transitionData.causal_chain || []).map((p: any) => (p && typeof p.chain_part === 'string' ? p.chain_part : ''))
+        )
+    ).filter(Boolean);
+
+    const uniqueDriverGroups = Array.from(
+        new Set(
+            (transitionData.causal_chain || [])
+                .flatMap((p: any) => (Array.isArray(p?.drivers) ? p.drivers : []))
+                .map((d: any) => (d && typeof d.driver_group === 'string' ? d.driver_group : ''))
+        )
+    ).filter(Boolean);
+
+    // Placeholder driver options. To be replaced with real options later.
+    const DRIVER_OPTIONS_PLACEHOLDER = [
+        'Option A',
+        'Option B',
+        'Option C',
+    ];
+
+    const handleDeleteDriver = (chainPartName: string, driverGroup: string, driverName: string) => {
+        setTransitionData(prev => {
+            if (!prev) return prev;
+            const current = prev.causal_chain || [];
+            const updated = current.map((part: any) => {
+                if (part?.chain_part !== chainPartName) return part;
+                const drivers: Driver[] = Array.isArray(part.drivers) ? part.drivers : [];
+                const filtered = drivers.filter(d => !(d.driver_group === driverGroup && d.driver === driverName));
+                return { ...part, drivers: filtered };
+            });
+            return { ...prev, causal_chain: updated };
+        });
+    };
+
+    const handleAddDriver = () => {
+        if (!newChainPart || !newDriverGroup || !newDriverName) return;
+        setTransitionData(prev => {
+            if (!prev) return prev;
+            const current: ChainPart[] = Array.isArray(prev.causal_chain) ? prev.causal_chain as any : [];
+            const idx = current.findIndex(p => p && p.chain_part === newChainPart);
+            let next: ChainPart[] = current.map(p => ({ ...p }));
+            if (idx === -1) {
+                next = [
+                    ...current,
+                    { chain_part: newChainPart, drivers: [] }
+                ] as ChainPart[];
+            }
+            const targetIndex = idx === -1 ? next.length - 1 : idx;
+            const target = next[targetIndex];
+            const exists = target.drivers.some(d => d.driver_group === newDriverGroup && d.driver === newDriverName);
+            if (!exists) {
+                target.drivers = [
+                    ...target.drivers,
+                    { driver_group: newDriverGroup, driver: newDriverName }
+                ];
+            }
+            // Reset form
+            setNewDriverName("");
+            return { ...prev, causal_chain: next } as TransitionData;
+        });
+    };
+
     return (
         <div className="transition-modal-overlay">
             <div className="transition-modal-container">
@@ -164,13 +248,15 @@ export function TransitionModal({ isOpen, onClose, onSave, transition, stateName
 
                 {/* Tab Navigation */}
                 <div className="tab-navigation">
-                    <div
+                    <button
+                        type="button"
                         onClick={() => setActiveTab('basic')}
                         className={`tab ${activeTab === 'basic' ? 'active' : ''}`}
                     >
                         Basic Info
-                    </div>
-                    <div
+                    </button>
+                    <button
+                        type="button"
                         onClick={() => setActiveTab('causal-chain')}
                         className={`tab ${activeTab === 'causal-chain' ? 'active' : ''}`}
                     >
@@ -178,7 +264,7 @@ export function TransitionModal({ isOpen, onClose, onSave, transition, stateName
                         {totalDrivers > 0 && (
                             <span className="tab-counter">{totalDrivers}</span>
                         )}
-                    </div>
+                    </button>
                 </div>
 
                 <form onSubmit={handleSubmit}>
@@ -246,7 +332,71 @@ export function TransitionModal({ isOpen, onClose, onSave, transition, stateName
                             </div>
                         </>
                     ) : (
-                        <CausalChainDisplay causalChain={transitionData.causal_chain || []} />
+                        <>
+                            {/* Add form for Causal Chain Drivers (placeholder options) */}
+                            <div className="causal-add-form">
+                                <div className="causal-add-row">
+                                    <div className="causal-add-field">
+                                        <label className="form-label" htmlFor="chainPartSelect">Chain Part</label>
+                                        <select
+                                            id="chainPartSelect"
+                                            className="form-input"
+                                            value={newChainPart}
+                                            onChange={(e) => setNewChainPart(e.target.value)}
+                                        >
+                                            <option value="">Select...</option>
+                                            {uniqueChainParts.map((cp) => (
+                                                <option key={cp} value={cp}>{cp}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="causal-add-field">
+                                        <label className="form-label" htmlFor="driverGroupSelect">Driver Group</label>
+                                        <select
+                                            id="driverGroupSelect"
+                                            className="form-input"
+                                            value={newDriverGroup}
+                                            onChange={(e) => setNewDriverGroup(e.target.value)}
+                                        >
+                                            <option value="">Select...</option>
+                                            {uniqueDriverGroups.map((dg) => (
+                                                <option key={dg} value={dg}>{dg}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="causal-add-field">
+                                        <label className="form-label" htmlFor="driverNameSelect">Driver</label>
+                                        <select
+                                            id="driverNameSelect"
+                                            className="form-input"
+                                            value={newDriverName}
+                                            onChange={(e) => setNewDriverName(e.target.value)}
+                                        >
+                                            <option value="">Select...</option>
+                                            {DRIVER_OPTIONS_PLACEHOLDER.map((d) => (
+                                                <option key={d} value={d}>{d}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="causal-add-actions">
+                                        <button
+                                            type="button"
+                                            className="btn btn-primary"
+                                            onClick={handleAddDriver}
+                                            disabled={!newChainPart || !newDriverGroup || !newDriverName}
+                                        >
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <small className="form-hint">Options are placeholders; will be replaced by final list.</small>
+                            </div>
+
+                            <CausalChainDisplay
+                                causalChain={transitionData.causal_chain || []}
+                                onDeleteDriver={handleDeleteDriver}
+                            />
+                        </>
                     )}
 
                     <div className="form-buttons">

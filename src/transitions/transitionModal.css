@@ -276,7 +276,54 @@
 }
 
 .driver-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 12px;
     margin-bottom: 3px;
     color: #212529;
+}
+
+.driver-item-text {
+    flex: 1;
+    padding-right: 8px;
+}
+
+.driver-item-delete {
+    background: transparent;
+    border: none;
+    color: #c53030;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.driver-item-delete:hover {
+    color: #9b2c2c;
+}
+
+/* Add form styles */
+.causal-add-form {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.causal-add-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.causal-add-field {
+    flex: 1;
+}
+
+.causal-add-actions {
+    display: flex;
+    align-items: center;
 }
