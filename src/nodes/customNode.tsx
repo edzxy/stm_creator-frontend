@@ -4,7 +4,7 @@ import { NodeProps, Handle, Position } from '@xyflow/react';
 import { CustomNodeData } from './types';
 import { useColorConfig } from '../colorConfig/ColorConfigContext';
 import { getColorForCondition, getConditionValue } from '../colorConfig/colorUtils';
-import './CustomNode.css';
+import './customNode.css';
 
 interface CustomNodeProps extends NodeProps {
     data: CustomNodeData;
